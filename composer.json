@@ -1,0 +1,20 @@
+{
+    "name": "laraplate/ngcommands",
+    "description": "Artisan ng generators",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alessandro Rovito",
+            "email": "alessandro.rovito@gmail.com"
+        }
+    ],
+    "require" : [
+        "illuminate/console" : "5.1.*"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Rovito\\Laraplate\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}
