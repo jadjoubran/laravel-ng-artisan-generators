@@ -8,8 +8,8 @@
             "email": "alessandro.rovito@gmail.com"
         }
     ],
-    "require" : {
-        "illuminate/console": "5.1.*",
+    "require": {
+        "illuminate/console": "5.1.*"
     },
     "autoload": {
         "psr-4": {
