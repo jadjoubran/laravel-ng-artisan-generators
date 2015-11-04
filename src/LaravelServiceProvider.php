@@ -1,6 +1,6 @@
 <?php
 
-namespace Rovito\Laraplate\Providers;
+namespace Rovito\Laraplate;
 
 use Illuminate\Support\ServiceProvider;
 

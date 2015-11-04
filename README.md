@@ -1,2 +1,2 @@
 # Laravel-ng-artisan-generate
-Generates angular files.
+This package help you to generate angular files.
