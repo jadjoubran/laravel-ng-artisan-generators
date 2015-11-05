@@ -1,6 +1,6 @@
 <?php
 
-namespace Rovito\Laraplate\Console\Commands;
+namespace LaravelAngular\Generators\Console\Commands;
 
 use Illuminate\Console\Command;
 use File;

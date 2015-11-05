@@ -1,6 +1,6 @@
 {
-    "name": "laraplate/ngcommands",
-    "description": "Artisan ng generators",
+    "name": "laravelangular/generators",
+    "description": "Angular generators for Artisan",
     "license": "MIT",
     "authors": [
         {
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Rovito\\Laraplate\\": "src"
+            "LaravelAngular\\Generators\\": "src"
         }
     },
     "minimum-stability": "dev"

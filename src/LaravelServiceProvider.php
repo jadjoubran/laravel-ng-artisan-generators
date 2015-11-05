@@ -1,6 +1,6 @@
 <?php
 
-namespace Rovito\Laraplate;
+namespace LaravelAngular\Generators;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -26,12 +26,12 @@ class LaravelServiceProvider extends ServiceProvider
     public function register()
     {
         $this->commands([
-            'Rovito\Laraplate\Console\Commands\AngularConfig',
-            'Rovito\Laraplate\Console\Commands\AngularDialog',
-            'Rovito\Laraplate\Console\Commands\AngularDirective',
-            'Rovito\Laraplate\Console\Commands\AngularFeature',
-            'Rovito\Laraplate\Console\Commands\AngularFilter',
-            'Rovito\Laraplate\Console\Commands\AngularService',
+            'LaravelAngular\Generators\Console\Commands\AngularConfig',
+            'LaravelAngular\Generators\Console\Commands\AngularDialog',
+            'LaravelAngular\Generators\Console\Commands\AngularDirective',
+            'LaravelAngular\Generators\Console\Commands\AngularFeature',
+            'LaravelAngular\Generators\Console\Commands\AngularFilter',
+            'LaravelAngular\Generators\Console\Commands\AngularService',
         ]);
 
         $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'ng');
