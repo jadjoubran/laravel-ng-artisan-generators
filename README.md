@@ -18,7 +18,13 @@ artisan ng:config name     #New config inside angular/config/
 
 If you're using the starter project, then it's already pre-installed.
 
-`coming soon`
+    composer require laravelangular/generators
+    
+    //and then add the provider in config/app.php
+    
+    LaravelAngular\Generators\LaravelServiceProvider::class
+    
+    php artisan vendor:publish
 
 
 # Contributors
