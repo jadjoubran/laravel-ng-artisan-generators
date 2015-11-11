@@ -21,8 +21,7 @@ If you're using the starter project, then it's already pre-installed.
     composer require laravelangular/generators
     
     //and then add the provider in config/app.php
-    
-    LaravelAngular\Generators\LaravelServiceProvider::class
+    LaravelAngular\Generators\LaravelServiceProvider::class,
     
     php artisan vendor:publish
 
