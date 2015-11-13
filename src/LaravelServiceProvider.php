@@ -14,7 +14,7 @@ class LaravelServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/generators.php' => config_path('generators.php')
+            __DIR__.'/../config/generators.php' => config_path('generators.php'),
         ]);
     }
 
@@ -34,6 +34,6 @@ class LaravelServiceProvider extends ServiceProvider
             'LaravelAngular\Generators\Console\Commands\AngularService',
         ]);
 
-        $this->mergeConfigFrom(__DIR__ . '/../config/generators.php', 'generators');
+        $this->mergeConfigFrom(__DIR__.'/../config/generators.php', 'generators');
     }
 }

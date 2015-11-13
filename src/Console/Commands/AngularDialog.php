@@ -2,8 +2,8 @@
 
 namespace LaravelAngular\Generators\Console\Commands;
 
-use Illuminate\Console\Command;
 use File;
+use Illuminate\Console\Command;
 
 class AngularDialog extends Command
 {
