@@ -2,25 +2,28 @@
 
 namespace LaravelAngular\Generators\Console\Commands;
 
-use Illuminate\Console\Command;
 use File;
+use Illuminate\Console\Command;
 
 class AngularFeature extends Command
 {
     /**
      * The name and signature of the console command.
+     *
      * @var string
      */
     protected $signature = 'ng:feature {name}';
 
     /**
      * The console command description.
+     *
      * @var string
      */
     protected $description = 'Create a new feature in angular/app';
 
     /**
      * Create a new command instance.
+     *
      * @return void
      */
     public function __construct()
@@ -30,6 +33,7 @@ class AngularFeature extends Command
 
     /**
      * Execute the console command.
+     *
      * @return mixed
      */
     public function handle()
