@@ -52,7 +52,7 @@ class AngularDirective extends Command
         $definition = str_replace('{{name}}', $name, $definition);
         $definition = str_replace('{{directiveName}}', $directive_name, $definition);
 
-        $folder = base_path(config('ng.source')).'/'.config('ng.directives').'/'.$name;
+        $folder = base_path(config('generators.source.main')).'/'.config('generators.source.directives').'/'.$name;
         if (is_dir($folder)) {
             $this->info('Folder already exists');
 
@@ -66,10 +66,10 @@ class AngularDirective extends Command
         File::put($folder.'/'.$name.'.html', $html);
 
         //create definition (.js)
-        File::put($folder.'/definition.js', $definition);
+        File::put($folder.'/'.$name.config('generators.prefixFileNames.definition'), $definition);
 
         //create controller (.js)
-        File::put($folder.'/'.$name.'.js', $js);
+        File::put($folder.'/'.$name.config('generators.prefixFileNames.directive'), $js);
 
         //create less file (.less)
         File::put($folder.'/'.$name.'.less', $less);

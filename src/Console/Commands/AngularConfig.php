@@ -42,7 +42,7 @@ class AngularConfig extends Command
 
         $js = file_get_contents(__DIR__.'/Stubs/AngularConfig/config.js.stub');
 
-        $folder = base_path(config('ng.source')).'/'.config('ng.config').'/';
+        $folder = base_path(config('generators.source.main')).'/'.config('generators.source.config').'/';
 
         //create config (.js)
         File::put($folder.'/'.$name.'.js', $js);

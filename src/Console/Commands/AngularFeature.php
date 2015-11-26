@@ -48,7 +48,7 @@ class AngularFeature extends Command
         $html = str_replace('{{StudlyName}}', $studly_name, $html);
         $js = str_replace('{{StudlyName}}', $studly_name, $js);
 
-        $folder = base_path(config('ng.source')).'/'.config('ng.features').'/'.$name;
+        $folder = base_path(config('generators.source.main')).'/'.config('generators.source.features').'/'.$name;
         if (is_dir($folder)) {
             $this->info('Folder already exists');
 
@@ -62,7 +62,7 @@ class AngularFeature extends Command
         File::put($folder.'/'.$name.'.html', $html);
 
         //create controller (.js)
-        File::put($folder.'/'.$name.'.js', $js);
+        File::put($folder.'/'.$name.config('generators.prefixFileNames.controller'), $js);
 
         //create less file (.less)
         File::put($folder.'/'.$name.'.less', $less);

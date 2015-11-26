@@ -45,10 +45,10 @@ class AngularService extends Command
 
         $js = str_replace('{{StudlyName}}', $studly_name, $js);
 
-        $folder = base_path(config('ng.source')).'/'.config('ng.services');
+        $folder = base_path(config('generators.source.main')).'/'.config('generators.source.services');
 
         //create service (.js)
-        File::put($folder.'/'.$name.'.js', $js);
+        File::put($folder.'/'.$name.config('generators.prefixFileNames.service'), $js);
 
         $this->info('Service created successfully.');
     }
