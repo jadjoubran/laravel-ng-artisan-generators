@@ -1,8 +1,10 @@
 (function(){
     "use strict";
 
-    angular.module('app.controllers').controller('{{StudlyName}}Ctrl', function(){
+    angular.module('app.controllers').controller('{{StudlyName}}Ctrl', {{StudlyName}}Ctrl);
+
+    function {{StudlyName}}Ctrl(){
         //
-    });
+    }
 
 })();

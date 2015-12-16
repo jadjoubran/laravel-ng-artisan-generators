@@ -1,16 +1,19 @@
 (function(){
     "use strict";
 
-    angular.module('app.controllers').controller('{{StudlyName}}Ctrl', function($scope, DialogService){
+    angular.module('app.controllers').controller('{{StudlyName}}Ctrl', {{StudlyName}}Ctrl);
 
-        $scope.save = function(){
+
+    function {{StudlyName}}Ctrl(DialogService){
+
+        this.save = function(){
             //
         };
 
-        $scope.hide = function(){
-        	DialogService.hide();
+        this.hide = function(){
+          	DialogService.hide();
         };
 
-    });
+    }
 
 })();
