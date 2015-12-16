@@ -1,4 +1,4 @@
-# Laravel-ng-artisan-generators
+# Laravel Angular Artisan Generators
 
 Angular generators for Artisan. Originally created at [laravel5-angular-material-starter](https://github.com/jadjoubran/laravel5-angular-material-starter).
 
