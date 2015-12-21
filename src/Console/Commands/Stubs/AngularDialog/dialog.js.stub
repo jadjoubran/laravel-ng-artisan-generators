@@ -1,10 +1,10 @@
 (function(){
     "use strict";
 
-    angular.module('app.controllers').controller('{{StudlyName}}Ctrl', {{StudlyName}}Ctrl);
+    angular.module('app.controllers').controller('{{StudlyName}}Controller', {{StudlyName}}Controller);
 
 
-    function {{StudlyName}}Ctrl(DialogService){
+    function {{StudlyName}}Controller(DialogService){
 
         this.save = function(){
             //

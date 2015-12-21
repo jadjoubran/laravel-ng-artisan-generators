@@ -1,4 +1,4 @@
-<md-dialog ng-controller="{{StudlyName}}Ctrl as vm">
+<md-dialog ng-controller="{{StudlyName}}Controller as vm">
 	<form ng-submit="vm.save()">
 		<md-dialog-content>
 			<h2 class="md-title">{{HumanReadableName}}</h2>
