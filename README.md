@@ -26,6 +26,10 @@ If you're using the starter project, then it's already pre-installed.
     php artisan vendor:publish
 
 
+# Documentation
+
+[View Angular Generators documentation](https://laravel-angular.readme.io/docs/generators-intro)
+
 # Contributors
 
 Originally created at [laravel5-angular-material-starter](https://github.com/jadjoubran/laravel5-angular-material-starter) then moved to a separate package by [@m33ch](https://github.com/m33ch)
