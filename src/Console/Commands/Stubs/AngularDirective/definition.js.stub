@@ -6,7 +6,7 @@
 	function {{directiveName}}Definition() {
 		return {
 			restrict: 'EA',
-			templateUrl: 'views/directives/{{name}}/{{name}}.html',
+			templateUrl: './views/directives/{{name}}/{{name}}.html',
 			controller: '{{StudlyName}}Controller',
 			link: function( scope, element, attrs ){
 				//
