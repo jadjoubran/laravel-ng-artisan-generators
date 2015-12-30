@@ -4,8 +4,8 @@
 	angular.module('app.controllers').controller('{{StudlyName}}Controller', {{StudlyName}}Controller);
 
 	function {{StudlyName}}Controller(){
-		//Assigns a view model (vm) variable to the controller instance
 		var vm = this 
+		
 	}
 
 })();
