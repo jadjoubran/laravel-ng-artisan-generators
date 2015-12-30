@@ -4,6 +4,8 @@
 	angular.module('app.controllers').controller('{{StudlyName}}Controller', {{StudlyName}}Controller);
 
 	function {{StudlyName}}Controller(){
+		var vm = this;
+		
 		//
 	}
 
