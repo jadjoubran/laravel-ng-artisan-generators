@@ -6,6 +6,7 @@
     function {{StudlyName}}Controller(){
         var vm = this;
         
+        //
     }
 
 })();
