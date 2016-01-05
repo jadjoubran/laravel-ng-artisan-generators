@@ -1,12 +1,12 @@
 (function(){
-	"use strict";
+    "use strict";
 
-	angular.module('app.controllers').controller('{{StudlyName}}Controller', {{StudlyName}}Controller);
+    angular.module('app.controllers').controller('{{StudlyName}}Controller', {{StudlyName}}Controller);
 
-	function {{StudlyName}}Controller(){
-		var vm = this;
-		
-		//
-	}
+    function {{StudlyName}}Controller(){
+        var vm = this;
+
+        //
+    }
 
 })();

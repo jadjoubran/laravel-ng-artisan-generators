@@ -11,7 +11,7 @@
         };
 
         this.hide = function(){
-          	DialogService.hide();
+            DialogService.hide();
         };
 
     }
