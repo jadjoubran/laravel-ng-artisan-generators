@@ -5,16 +5,16 @@
 
 	function {{directiveName}}Definition() {
 
-		var directive = {
-			restrict: 'EA',
-			templateUrl: './views/directives/{{name}}/{{name}}.html',
-			controller: '{{StudlyName}}Controller',
+    var directive = {
+      restrict: 'EA',
+      templateUrl: './views/directives/{{name}}/{{name}}.html',
+      controller: '{{StudlyName}}Controller',
       controllerAs: 'vm',
-			scope: {},
+      scope: {},
       bindToController: true
-		};
+    };
 
-		return directive;
-	}
+    return directive;
+  }
 
 })();
