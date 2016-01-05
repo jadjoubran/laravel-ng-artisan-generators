@@ -4,14 +4,17 @@
 	angular.module('app.directives').directive('{{directiveName}}', {{directiveName}}Definition);
 
 	function {{directiveName}}Definition() {
-		return {
+
+		var directive = {
 			restrict: 'EA',
 			templateUrl: './views/directives/{{name}}/{{name}}.html',
 			controller: '{{StudlyName}}Controller',
-			link: function( scope, element, attrs ){
-				//
-			}
+      controllerAs: 'vm',
+			scope: {},
+      bindToController: true
 		};
+
+		return directive;
 	}
 
 })();
