@@ -44,13 +44,11 @@ class AngularDirective extends Command
 
         $html = file_get_contents(__DIR__.'/Stubs/AngularDirective/directive.html.stub');
         $js = file_get_contents(__DIR__.'/Stubs/AngularDirective/directive.js.stub');
-        $definition = file_get_contents(__DIR__.'/Stubs/AngularDirective/definition.js.stub');
         $less = file_get_contents(__DIR__.'/Stubs/AngularDirective/directive.less.stub');
 
         $js = str_replace('{{StudlyName}}', $studly_name, $js);
-        $definition = str_replace('{{StudlyName}}', $studly_name, $definition);
-        $definition = str_replace('{{name}}', $name, $definition);
-        $definition = str_replace('{{directiveName}}', $directive_name, $definition);
+        $js = str_replace('{{name}}', $name, $js);
+        $js = str_replace('{{directiveName}}', $directive_name, $js);
 
         $folder = base_path(config('generators.source.main')).'/'.config('generators.source.directives').'/'.$name;
         if (is_dir($folder)) {
@@ -65,10 +63,7 @@ class AngularDirective extends Command
         //create view (.html)
         File::put($folder.'/'.$name.'.html', $html);
 
-        //create definition (.js)
-        File::put($folder.'/'.$name.config('generators.prefixFileNames.definition'), $definition);
-
-        //create controller (.js)
+        //create directive (.js)
         File::put($folder.'/'.$name.config('generators.prefixFileNames.directive'), $js);
 
         //create less file (.less)

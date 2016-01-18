@@ -1,7 +1,21 @@
 (function(){
     "use strict";
 
-    angular.module('app.controllers').controller('{{StudlyName}}Controller', {{StudlyName}}Controller);
+    angular.module('app.directives').directive('{{directiveName}}', {{directiveName}}Directive);
+
+    function {{directiveName}}Directive() {
+
+        var directive = {
+          restrict: 'EA',
+          templateUrl: './views/directives/{{name}}/{{name}}.html',
+          controller: '{{StudlyName}}Controller',
+          controllerAs: 'vm',
+          scope: {},
+          bindToController: true
+        };
+
+        return directive;
+    }
 
     function {{StudlyName}}Controller(){
         var vm = this;

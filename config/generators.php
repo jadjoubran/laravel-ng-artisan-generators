@@ -34,21 +34,17 @@ return [
       ],
       'prefixFileNames' => [
             /*
-             * Angular controller 
+             * Angular controller
              */
             'controller'      => '.controller.js',
             /*
-             * Angular directive 
+             * Angular directive
              */
             'directive'       => '.directive.js',
             /*
-             * Angular dialog 
+             * Angular dialog
              */
             'dialog'          => '.dialog.js',
-            /*
-             * Angular definition 
-             */
-            'definition'      => '.definition.js',
             /*
              * Angular service
              */
