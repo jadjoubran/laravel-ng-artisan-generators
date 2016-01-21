@@ -5,12 +5,16 @@
 
 
     function {{StudlyName}}Controller(DialogService){
+        var vm = this;
 
-        this.save = function(){
+        vm.save = save;
+        vm.hide = hide;
+
+        var save = function(){
             //
         };
 
-        this.hide = function(){
+        var hide = function(){
             DialogService.hide();
         };
 
