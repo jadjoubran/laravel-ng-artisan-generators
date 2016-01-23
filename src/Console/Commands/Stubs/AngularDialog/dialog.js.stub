@@ -1,23 +1,16 @@
-(function(){
-    "use strict";
+export class {{StudlyName}}Controller{
+    constructor(DialogService){
+        'ngInject';
 
-    angular.module('app.controllers').controller('{{StudlyName}}Controller', {{StudlyName}}Controller);
-
-
-    function {{StudlyName}}Controller(DialogService){
-        var vm = this;
-
-        vm.save = save;
-        vm.hide = hide;
-
-        var save = function(){
-            //
-        };
-
-        var hide = function(){
-            DialogService.hide();
-        };
-
+        this.DialogService = DialogService;
     }
 
-})();
+    save(){
+        //
+    }
+
+    hide(){
+        this.DialogService.hide();
+    };
+}
+

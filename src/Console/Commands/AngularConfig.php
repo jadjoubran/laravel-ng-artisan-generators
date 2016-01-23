@@ -39,8 +39,11 @@ class AngularConfig extends Command
     public function handle()
     {
         $name = $this->argument('name');
+        $studly_name = studly_case($name);
 
         $js = file_get_contents(__DIR__.'/Stubs/AngularConfig/config.js.stub');
+
+        $js = str_replace('{{StudlyName}}', $studly_name, $js);
 
         $folder = base_path(config('generators.source.root')).'/'.config('generators.source.config').'/';
 
