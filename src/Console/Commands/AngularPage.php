@@ -46,6 +46,7 @@ class AngularPage extends Command
         $folder = base_path(config('generators.source.main')).'/'.config('generators.source.page').'/'.$name;
         if (is_dir($folder)) {
             $this->info('Folder already exists');
+
             return false;
         }
 
