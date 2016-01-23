@@ -6,7 +6,7 @@
     function {{componentName}}Component() {
 
         var component = {
-          restrict: 'EA',
+          restrict: 'E',
           templateUrl: './views/components/{{name}}/{{name}}.html',
           controller: {{StudlyName}}Controller,
           controllerAs: 'vm',
