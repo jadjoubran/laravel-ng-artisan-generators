@@ -2,9 +2,6 @@ export class {{StudlyName}}Controller{
     constructor(DialogService){
         'ngInject';
 
-        this.save = save;
-        this.hide = hide;
-
         this.DialogService = DialogService;
     }
 
