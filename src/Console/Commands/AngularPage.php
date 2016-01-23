@@ -43,7 +43,7 @@ class AngularPage extends Command
         $html = file_get_contents(__DIR__.'/Stubs/AngularPage/page.html.stub');
         $less = file_get_contents(__DIR__.'/Stubs/AngularPage/page.less.stub');
 
-        $folder = base_path(config('generators.source.main')).'/'.config('generators.source.page').'/'.$name;
+        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.page').'/'.$name;
         if (is_dir($folder)) {
             $this->info('Folder already exists');
 

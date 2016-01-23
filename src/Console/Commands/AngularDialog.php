@@ -49,7 +49,7 @@ class AngularDialog extends Command
         $js = str_replace('{{StudlyName}}', $studly_name, $js);
         $html = str_replace('{{HumanReadableName}}', $human_readable, $html);
 
-        $folder = base_path(config('generators.source.main')).'/'.config('generators.source.dialogs').'/'.$name;
+        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.dialogs').'/'.$name;
 
         if (is_dir($folder)) {
             $this->info('Folder already exists');
@@ -64,7 +64,7 @@ class AngularDialog extends Command
         File::put($folder.'/'.$name.'.html', $html);
 
         //create controller (.js)
-        File::put($folder.'/'.$name.config('generators.prefixFileNames.dialog'), $js);
+        File::put($folder.'/'.$name.config('generators.prefix.dialog'), $js);
 
         $this->info('Dialog created successfully.');
     }

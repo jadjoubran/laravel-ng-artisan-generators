@@ -45,7 +45,7 @@ class AngularFilter extends Command
 
         $js = str_replace('{{StudlyName}}', $studly_name, $js);
 
-        $folder = base_path(config('generators.source.main')).'/'.config('generators.source.filters');
+        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.filters');
 
         //create filter (.js)
         File::put($folder.'/'.$name.'.js', $js);

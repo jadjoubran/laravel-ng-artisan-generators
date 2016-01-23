@@ -50,7 +50,7 @@ class AngularComponent extends Command
         $js = str_replace('{{name}}', $name, $js);
         $js = str_replace('{{componentName}}', $component_name, $js);
 
-        $folder = base_path(config('generators.source.main')).'/'.config('generators.source.components').'/'.$name;
+        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.components').'/'.$name;
         if (is_dir($folder)) {
             $this->info('Folder already exists');
 
@@ -61,10 +61,10 @@ class AngularComponent extends Command
         File::makeDirectory($folder, 0775, true);
 
         //create view (.component.html)
-        File::put($folder.'/'.$name.config('generators.prefixFileNames.componentView'), $html);
+        File::put($folder.'/'.$name.config('generators.prefix.componentView'), $html);
 
         //create component (.component.js)
-        File::put($folder.'/'.$name.config('generators.prefixFileNames.component'), $js);
+        File::put($folder.'/'.$name.config('generators.prefix.component'), $js);
 
         //create less file (.less)
         File::put($folder.'/'.$name.'.less', $less);
