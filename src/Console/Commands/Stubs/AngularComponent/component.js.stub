@@ -7,7 +7,7 @@
 
         var component = {
           restrict: 'E',
-          templateUrl: './views/components/{{name}}/{{name}}.html',
+          templateUrl: './views/app/components/{{name}}/{{name}}.component.html',
           controller: {{StudlyName}}Controller,
           controllerAs: 'vm',
           scope: {},
