@@ -1,20 +1,20 @@
 (function(){
     "use strict";
 
-    angular.module('app.directives').directive('{{directiveName}}', {{directiveName}}Directive);
+    angular.module('app.components').directive('{{componentName}}', {{componentName}}Component);
 
-    function {{directiveName}}Directive() {
+    function {{componentName}}Component() {
 
-        var directive = {
+        var component = {
           restrict: 'EA',
-          templateUrl: './views/directives/{{name}}/{{name}}.html',
+          templateUrl: './views/components/{{name}}/{{name}}.html',
           controller: {{StudlyName}}Controller,
           controllerAs: 'vm',
           scope: {},
           bindToController: true
         };
 
-        return directive;
+        return component;
     }
 
     function {{StudlyName}}Controller(){

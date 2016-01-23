@@ -5,21 +5,21 @@ namespace LaravelAngular\Generators\Console\Commands;
 use File;
 use Illuminate\Console\Command;
 
-class AngularFeature extends Command
+class AngularPage extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'ng:feature {name}';
+    protected $signature = 'ng:page {name}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new feature in angular/app';
+    protected $description = 'Create a new page in angular/app/pages';
 
     /**
      * Create a new command instance.
@@ -39,34 +39,25 @@ class AngularFeature extends Command
     public function handle()
     {
         $name = $this->argument('name');
-        $studly_name = studly_case($name);
 
-        $html = file_get_contents(__DIR__.'/Stubs/AngularFeature/feature.html.stub');
-        $js = file_get_contents(__DIR__.'/Stubs/AngularFeature/feature.js.stub');
-        $less = file_get_contents(__DIR__.'/Stubs/AngularFeature/feature.less.stub');
+        $html = file_get_contents(__DIR__.'/Stubs/AngularPage/page.html.stub');
+        $less = file_get_contents(__DIR__.'/Stubs/AngularPage/page.less.stub');
 
-        $html = str_replace('{{StudlyName}}', $studly_name, $html);
-        $js = str_replace('{{StudlyName}}', $studly_name, $js);
-
-        $folder = base_path(config('generators.source.main')).'/'.config('generators.source.features').'/'.$name;
+        $folder = base_path(config('generators.source.main')).'/'.config('generators.source.page').'/'.$name;
         if (is_dir($folder)) {
             $this->info('Folder already exists');
-
             return false;
         }
 
         //create folder
         File::makeDirectory($folder, 0775, true);
 
-        //create view (.html)
+        //create view (.page.html)
         File::put($folder.'/'.$name.'.html', $html);
-
-        //create controller (.js)
-        File::put($folder.'/'.$name.config('generators.prefixFileNames.controller'), $js);
 
         //create less file (.less)
         File::put($folder.'/'.$name.'.less', $less);
 
-        $this->info('Feature created successfully.');
+        $this->info('Page created successfully.');
     }
 }

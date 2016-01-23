@@ -6,9 +6,9 @@ Angular generators for Artisan. Originally created at [laravel5-angular-material
 # Usage
 
 ```
-artisan ng:feature name    #New feature inside angular/app/
+artisan ng:page name       #New page inside angular/app/pages/
 artisan ng:dialog name     #New custom dialog inside angular/dialogs/
-artisan ng:directive name  #New directive inside angular/directives/
+artisan ng:component name  #New component inside angular/app/components/
 artisan ng:service name    #New service inside angular/services/
 artisan ng:filter name     #New filter inside angular/filters/
 artisan ng:config name     #New config inside angular/config/
@@ -19,10 +19,10 @@ artisan ng:config name     #New config inside angular/config/
 If you're using the starter project, then it's already pre-installed.
 
     composer require laravelangular/generators
-    
+
     //and then add the provider in config/app.php
     LaravelAngular\Generators\LaravelServiceProvider::class,
-    
+
     php artisan vendor:publish
 
 
@@ -37,4 +37,4 @@ Originally created at [laravel5-angular-material-starter](https://github.com/jad
 
 # Notes
 
-- Do not append the word `service` or `controller`, they will be automatically added for you.
+- Do not append the word `service`, it will be automatically added for you.
