@@ -48,7 +48,7 @@ class AngularFilter extends Command
         $folder = base_path(config('generators.source.root')).'/'.config('generators.source.filters');
 
         //create filter (.js)
-        File::put($folder.'/'.$name.'.js', $js);
+        File::put($folder.'/'.$name.config('generators.prefix.filter'), $js);
 
         $this->info('Filter created successfully.');
     }

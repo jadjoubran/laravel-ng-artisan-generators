@@ -48,7 +48,7 @@ class AngularConfig extends Command
         $folder = base_path(config('generators.source.root')).'/'.config('generators.source.config').'/';
 
         //create config (.js)
-        File::put($folder.'/'.$name.'.js', $js);
+        File::put($folder.'/'.$name.config('generators.prefix.config'), $js);
 
         $this->info('Config created successfully.');
     }
