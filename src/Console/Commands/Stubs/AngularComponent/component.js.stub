@@ -1,26 +1,23 @@
-(function(){
-    "use strict";
+export function {{componentName}}Component() {
+    'ngInject';
 
-    angular.module('app.components').directive('{{componentName}}', {{componentName}}Component);
+    var component = {
+        restrict: 'E',
+        templateUrl: './views/app/components/{{name}}/{{name}}.component.html',
+        controller: {{StudlyName}}Controller,
+        controllerAs: 'vm',
+        scope: {},
+        bindToController: true
+    };
 
-    function {{componentName}}Component() {
+    return component;
+}
 
-        var component = {
-          restrict: 'E',
-          templateUrl: './views/app/components/{{name}}/{{name}}.component.html',
-          controller: {{StudlyName}}Controller,
-          controllerAs: 'vm',
-          scope: {},
-          bindToController: true
-        };
-
-        return component;
-    }
-
-    function {{StudlyName}}Controller(){
-        var vm = this;
+class {{StudlyName}}Controller{
+    constructor(){
+        'ngInject';
 
         //
     }
+}
 
-})();

@@ -1,8 +1,5 @@
-(function(){
-    "use strict";
+export function {{StudlyName}}Config(){
+    'ngInject';
 
-    angular.module('app.config').config(function(){
-        //
-    });
-
-})();
+    //
+}

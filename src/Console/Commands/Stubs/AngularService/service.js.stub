@@ -1,10 +1,8 @@
-(function(){
-    "use strict";
+export class {{StudlyName}}Service{
+    constructor(){
+        'ngInject';
 
-    angular.module('app.services').factory('{{StudlyName}}Service', {{StudlyName}}Service);
-
-    function {{StudlyName}}Service(){
         //
     }
+}
 
-})();

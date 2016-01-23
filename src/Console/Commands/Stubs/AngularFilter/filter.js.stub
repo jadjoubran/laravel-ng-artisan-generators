@@ -1,12 +1,7 @@
-(function(){
-    "use strict";
+export function {{StudlyName}}Filter(){
+    'ngInject';
 
-    angular.module('app.filters').filter('{{StudlyName}}', {{StudlyName}});
-
-    function {{StudlyName}}(){
-        return function( input ){
-            //
-        }
+    return function( input ){
+        //
     }
-
-})();
+}
