@@ -11,6 +11,6 @@ export class {{StudlyName}}Controller{
 
     hide(){
         this.DialogService.hide();
-    };
+    }
 }
 
