@@ -2,12 +2,10 @@ export function {{componentName}}Component() {
     'ngInject';
 
     var component = {
-        restrict: 'E',
         templateUrl: './views/app/components/{{name}}/{{name}}.component.html',
         controller: {{StudlyName}}Controller,
         controllerAs: 'vm',
-        scope: {},
-        bindToController: true
+        bindings: {}
     };
 
     return component;
