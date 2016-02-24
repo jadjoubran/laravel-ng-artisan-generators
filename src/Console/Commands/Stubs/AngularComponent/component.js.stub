@@ -1,16 +1,3 @@
-export function {{componentName}}Component() {
-    'ngInject';
-
-    var component = {
-        templateUrl: './views/app/components/{{name}}/{{name}}.component.html',
-        controller: {{StudlyName}}Controller,
-        controllerAs: 'vm',
-        bindings: {}
-    };
-
-    return component;
-}
-
 class {{StudlyName}}Controller{
     constructor(){
         'ngInject';
@@ -18,4 +5,12 @@ class {{StudlyName}}Controller{
         //
     }
 }
+
+export const {{componentName}}Component = {
+    templateUrl: './views/app/components/{{name}}/{{name}}.component.html',
+    controller: {{StudlyName}}Controller,
+    controllerAs: 'vm',
+    bindings: {}
+}
+
 
