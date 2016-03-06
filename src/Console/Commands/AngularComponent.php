@@ -40,7 +40,6 @@ class AngularComponent extends Command
     {
         $name = $this->argument('name');
         $studly_name = studly_case($name);
-        $component_name = strtolower(substr($studly_name, 0, 1)).substr($studly_name, 1);
 
         $html = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.html.stub');
         $js = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.js.stub');
@@ -48,7 +47,6 @@ class AngularComponent extends Command
 
         $js = str_replace('{{StudlyName}}', $studly_name, $js);
         $js = str_replace('{{name}}', $name, $js);
-        $js = str_replace('{{componentName}}', $component_name, $js);
 
         $folder = base_path(config('generators.source.root')).'/'.config('generators.source.components').'/'.$name;
         if (is_dir($folder)) {

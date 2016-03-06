@@ -6,7 +6,7 @@ class {{StudlyName}}Controller{
     }
 }
 
-export const {{componentName}}Component = {
+export const {{StudlyName}}Component = {
     templateUrl: './views/app/components/{{name}}/{{name}}.component.html',
     controller: {{StudlyName}}Controller,
     controllerAs: 'vm',
