@@ -29,5 +29,5 @@ return [
                 'components'      => 'app/components',
                 'services'        => 'services',
             ],
-      ]
+      ],
 ];
