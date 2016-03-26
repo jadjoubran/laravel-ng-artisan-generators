@@ -12,7 +12,7 @@ class AngularComponent extends Command
      *
      * @var string
      */
-    protected $signature = 'ng:component {name} {--no-spec}';
+    protected $signature = 'ng:component {name} {--no-spec : Don\'t create a test file}';
 
     /**
      * The console command description.

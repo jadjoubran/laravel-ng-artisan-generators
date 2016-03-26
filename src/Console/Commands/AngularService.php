@@ -12,7 +12,7 @@ class AngularService extends Command
      *
      * @var string
      */
-    protected $signature = 'ng:service {name} {--no-spec}';
+    protected $signature = 'ng:service {name} {--no-spec : Don\'t create a test file}';
 
     /**
      * The console command description.
