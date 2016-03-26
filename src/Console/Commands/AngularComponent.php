@@ -73,7 +73,7 @@ class AngularComponent extends Command
         //create less file (.less)
         File::put($folder.'/'.$name.'.less', $less);
 
-        if ( !$this->option('no-spec') && config('generators.tests.enable.components') ){
+        if (!$this->option('no-spec') && config('generators.tests.enable.components')){
             //create spec file (.component.spec.js)
             File::put($spec_folder.'/'.$name.'.component.spec.js', $spec);
         }
