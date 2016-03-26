@@ -25,7 +25,7 @@ return [
                 'services'        => true,
             ],
             'source' => [
-                'root'            => 'tests/angular/'
+                'root'            => 'tests/angular/',
                 'components'      => 'app/components',
                 'services'        => 'services',
             ],
