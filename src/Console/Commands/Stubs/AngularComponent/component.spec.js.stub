@@ -1,0 +1,11 @@
+ngDescribe({
+    name: 'Test {{ng-component}} component',
+    modules: 'app',
+    element: '<{{ng-component}}></{{ng-component}}>',
+    tests: function (deps) {
+
+        it('basic test', () => {
+            //
+        });
+    }
+});

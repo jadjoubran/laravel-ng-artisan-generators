@@ -12,7 +12,7 @@ class AngularService extends Command
      *
      * @var string
      */
-    protected $signature = 'ng:service {name}';
+    protected $signature = 'ng:service {name} {--no-spec}';
 
     /**
      * The console command description.
@@ -42,13 +42,22 @@ class AngularService extends Command
         $studly_name = studly_case($name);
 
         $js = file_get_contents(__DIR__.'/Stubs/AngularService/service.js.stub');
+        $spec = file_get_contents(__DIR__.'/Stubs/AngularService/service.spec.js.stub');
 
         $js = str_replace('{{StudlyName}}', $studly_name, $js);
+        $spec = str_replace('{{StudlyName}}', $studly_name, $spec);
 
         $folder = base_path(config('generators.source.root')).'/'.config('generators.source.services');
 
-        //create service (.js)
+        $spec_folder = base_path(config('generators.tests.source.root')).'/'.config('generators.tests.source.services');
+
+        //create service (.service.js)
         File::put($folder.'/'.$name.config('generators.prefix.service'), $js);
+
+        if ( !$this->argument('no-spec') && config('generators.tests.enable.services') ){
+            //create spec (.service.spec.js)
+            File::put($spec_folder.'/'.$name.'.service.spec.js', $spec);
+        }
 
         $this->info('Service created successfully.');
     }

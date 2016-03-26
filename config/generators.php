@@ -19,4 +19,15 @@ return [
             'filter'          => '.filter.js',
             'pageView'        => '.page.html',
       ],
+      'tests' => [
+            'enable' => [
+                'components'      => true,
+                'services'        => true,
+            ],
+            'source' => [
+                'root'            => 'tests/angular/'
+                'components'      => 'app/components',
+                'services'        => 'services',
+            ],
+      ]
 ];

@@ -1,0 +1,11 @@
+ngDescribe({
+    name: 'Test {{StudlyName}}Service',
+    modules: 'app',
+    inject: '{{StudlyName}}Service',
+    tests: function (deps) {
+
+        it('basic test', () => {
+            //
+        });
+    }
+});
