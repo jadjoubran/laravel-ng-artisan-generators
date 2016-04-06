@@ -38,12 +38,12 @@ class AngularComponent extends Command
      */
     public function handle()
     {
-        $name         = $this->argument('name');
-        $studly_name  = studly_case($name);
+        $name = $this->argument('name');
+        $studly_name = studly_case($name);
         $ng_component = str_replace('-', '-', $name);
 
         $html = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.html.stub');
-        $js   = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.js.stub');
+        $js = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.js.stub');
         $less = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.less.stub');
         $spec = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.spec.js.stub');
 
@@ -88,7 +88,6 @@ class AngularComponent extends Command
             $components = str_replace($module, $module.$newComponent, $components, 1);
             file_put_contents($components_index, $components);
         }
-
 
         $this->info('Component created successfully.');
     }

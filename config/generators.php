@@ -33,5 +33,5 @@ return [
       ],
       'misc' => [
             'auto_import' => true,
-      ]
+      ],
 ];
