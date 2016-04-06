@@ -14,7 +14,7 @@ class AngularComponent extends Command
      */
     protected $signature = 'ng:component {name}
     {--no-spec : Don\'t create a test file}
-    {--no-import: Don\'t auto import in index.components}';
+    {--no-import : Don\'t auto import in index.components}';
 
     /**
      * The console command description.

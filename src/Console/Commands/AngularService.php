@@ -12,7 +12,9 @@ class AngularService extends Command
      *
      * @var string
      */
-    protected $signature = 'ng:service {name} {--no-spec : Don\'t create a test file}';
+    protected $signature = 'ng:service {name}
+    {--no-spec : Don\'t create a test file}
+    {--no-import : Don\'t auto import in index.services}';
 
     /**
      * The console command description.
@@ -57,6 +59,17 @@ class AngularService extends Command
         if (!$this->option('no-spec') && config('generators.tests.enable.services')) {
             //create spec (.service.spec.js)
             File::put($spec_folder.'/'.$name.'.service.spec.js', $spec);
+        }
+
+        //import service
+        $services_index = base_path(config('generators.source.root')).'/index.services.js';
+        if (config('generators.misc.auto_import') && !$this->option('no-import') && file_exists($services_index)) {
+            $services = file_get_contents($services_index);
+            $newService = "\r\n\t.service('$studly_name'Service)";
+            $module = "angular.module('app.services')";
+            $services = str_replace($module, $module.$newService, $services);
+            $services = "import {".$studly_name."Service} from './services/{$name}.service';\n".$services;
+            file_put_contents($services_index, $services);
         }
 
         $this->info('Service created successfully.');

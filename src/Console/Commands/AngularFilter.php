@@ -12,7 +12,9 @@ class AngularFilter extends Command
      *
      * @var string
      */
-    protected $signature = 'ng:filter {name}';
+    protected $signature = 'ng:filter {name}
+    {--no-spec : Don\'t create a test file}
+    {--no-import : Don\'t auto import in index.filters}';
 
     /**
      * The console command description.
@@ -49,6 +51,18 @@ class AngularFilter extends Command
 
         //create filter (.js)
         File::put($folder.'/'.$name.config('generators.prefix.filter'), $js);
+
+        //import filter
+        $filters_index = base_path(config('generators.source.root')).'/index.filters.js';
+        if (config('generators.misc.auto_import') && !$this->option('no-import') && file_exists($filters_index)) {
+            $filters = file_get_contents($filters_index);
+            $filterName = lcfirst($studly_name);
+            $newFilters = "\r\n\t.filter('$filterName', {$studly_name}Filter)";
+            $module = "angular.module('app.filters')";
+            $filters = str_replace($module, $module.$newFilters, $filters);
+            $filters = "import {".$studly_name."Filter} from './filters/{$name}/{$name}.filter';\n".$filters;
+            file_put_contents($filters_index, $filters);
+        }
 
         $this->info('Filter created successfully.');
     }
