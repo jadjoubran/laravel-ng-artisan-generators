@@ -12,7 +12,9 @@ class AngularComponent extends Command
      *
      * @var string
      */
-    protected $signature = 'ng:component {name} {--no-spec : Don\'t create a test file, --no-import: Don\'t auto import in index.components}';
+    protected $signature = 'ng:component {name}
+    {--no-spec : Don\'t create a test file}
+    {--no-import: Don\'t auto import in index.components}';
 
     /**
      * The console command description.
@@ -86,6 +88,7 @@ class AngularComponent extends Command
             $newComponent = "\r\n\t.component('$componentName', {$studly_name}Component)";
             $module = "angular.module('app.components')";
             $components = str_replace($module, $module.$newComponent, $components);
+            $components = "import {".$studly_name."Component} from './app/components/{$name}/{$name}.component';\n".$components;
             file_put_contents($components_index, $components);
         }
 
