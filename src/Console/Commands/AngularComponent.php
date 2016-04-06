@@ -38,12 +38,12 @@ class AngularComponent extends Command
      */
     public function handle()
     {
-        $name = $this->argument('name');
-        $studly_name = studly_case($name);
+        $name         = $this->argument('name');
+        $studly_name  = studly_case($name);
         $ng_component = str_replace('-', '-', $name);
 
         $html = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.html.stub');
-        $js = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.js.stub');
+        $js   = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.js.stub');
         $less = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.less.stub');
         $spec = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.spec.js.stub');
 
@@ -77,6 +77,18 @@ class AngularComponent extends Command
             //create spec file (.component.spec.js)
             File::put($spec_folder.'/'.$name.'.component.spec.js', $spec);
         }
+
+        //import component
+        $components_index = base_path(config('generators.source.root')).'/index.components.js';
+        if (config('generators.misc.auto_import') && !$this->option('no-import') && file_exists($components_index)) {
+            $components = file_get_contents($components_index);
+            $componentName = lcfirst($studlyName);
+            $newComponent = "\r\n\t.component('$componentName', $studlyName)";
+            $module = "angular.module('app.components')";
+            $components = str_replace($module, $module.$newComponent, $components, 1);
+            file_put_contents($components_index, $components);
+        }
+
 
         $this->info('Component created successfully.');
     }
