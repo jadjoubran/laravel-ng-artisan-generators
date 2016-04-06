@@ -68,7 +68,7 @@ class AngularService extends Command
             $newService = "\r\n\t.service('$studly_name'Service)";
             $module = "angular.module('app.services')";
             $services = str_replace($module, $module.$newService, $services);
-            $services = "import {".$studly_name."Service} from './services/{$name}.service';\n".$services;
+            $services = 'import {'.$studly_name."Service} from './services/{$name}.service';\n".$services;
             file_put_contents($services_index, $services);
         }
 

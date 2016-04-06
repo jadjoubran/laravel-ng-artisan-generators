@@ -59,10 +59,9 @@ class AngularConfig extends Command
             $newConfig = "\r\n\t.config('$studly_name')";
             $module = "angular.module('app.config')";
             $configs = str_replace($module, $module.$newConfig, $configs);
-            $configs = "import {".$studly_name."Config} from './config/{$name}.config';\n".$configs;
+            $configs = 'import {'.$studly_name."Config} from './config/{$name}.config';\n".$configs;
             file_put_contents($config_index, $configs);
         }
-
 
         $this->info('Config created successfully.');
     }
