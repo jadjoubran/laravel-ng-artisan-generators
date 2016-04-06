@@ -88,7 +88,7 @@ class AngularComponent extends Command
             $newComponent = "\r\n\t.component('$componentName', {$studly_name}Component)";
             $module = "angular.module('app.components')";
             $components = str_replace($module, $module.$newComponent, $components);
-            $components = "import {".$studly_name."Component} from './app/components/{$name}/{$name}.component';\n".$components;
+            $components = 'import {'.$studly_name."Component} from './app/components/{$name}/{$name}.component';\n".$components;
             file_put_contents($components_index, $components);
         }
 
