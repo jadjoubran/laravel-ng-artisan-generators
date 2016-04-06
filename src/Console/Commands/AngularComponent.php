@@ -12,7 +12,7 @@ class AngularComponent extends Command
      *
      * @var string
      */
-    protected $signature = 'ng:component {name} {--no-spec : Don\'t create a test file}';
+    protected $signature = 'ng:component {name} {--no-spec : Don\'t create a test file, --no-import: Don\'t auto import in index.components}';
 
     /**
      * The console command description.
@@ -40,7 +40,7 @@ class AngularComponent extends Command
     {
         $name = $this->argument('name');
         $studly_name = studly_case($name);
-        $ng_component = str_replace('-', '-', $name);
+        $ng_component = str_replace('_', '-', $name);
 
         $html = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.html.stub');
         $js = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.js.stub');
@@ -82,10 +82,10 @@ class AngularComponent extends Command
         $components_index = base_path(config('generators.source.root')).'/index.components.js';
         if (config('generators.misc.auto_import') && !$this->option('no-import') && file_exists($components_index)) {
             $components = file_get_contents($components_index);
-            $componentName = lcfirst($studlyName);
-            $newComponent = "\r\n\t.component('$componentName', $studlyName)";
+            $componentName = lcfirst($studly_name);
+            $newComponent = "\r\n\t.component('$componentName', {$studly_name}Component)";
             $module = "angular.module('app.components')";
-            $components = str_replace($module, $module.$newComponent, $components, 1);
+            $components = str_replace($module, $module.$newComponent, $components);
             file_put_contents($components_index, $components);
         }
 
