@@ -56,7 +56,7 @@ class AngularConfig extends Command
         $config_index = base_path(config('generators.source.root')).'/index.config.js';
         if (config('generators.misc.auto_import') && !$this->option('no-import') && file_exists($config_index)) {
             $configs = file_get_contents($config_index);
-            $newConfig = "\r\n\t.config('$studly_name', $studly_name)";
+            $newConfig = "\r\n\t.config({$studly_name}Config)";
             $module = "angular.module('app.config')";
             $configs = str_replace($module, $module.$newConfig, $configs);
             $configs = 'import {'.$studly_name."Config} from './config/{$name}.config';\n".$configs;
