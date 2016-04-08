@@ -65,7 +65,7 @@ class AngularService extends Command
         $services_index = base_path(config('generators.source.root')).'/index.services.js';
         if (config('generators.misc.auto_import') && !$this->option('no-import') && file_exists($services_index)) {
             $services = file_get_contents($services_index);
-            $newService = "\r\n\t.service('{$studly_name}Service')";
+            $newService = "\r\n\t.service('{$studly_name}Service', '{$studly_name}Service')";
             $module = "angular.module('app.services')";
             $services = str_replace($module, $module.$newService, $services);
             $services = 'import {'.$studly_name."Service} from './services/{$name}.service';\n".$services;
