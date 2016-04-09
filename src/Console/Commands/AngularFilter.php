@@ -60,7 +60,7 @@ class AngularFilter extends Command
             $newFilters = "\r\n\t.filter('$filterName', {$studly_name}Filter)";
             $module = "angular.module('app.filters')";
             $filters = str_replace($module, $module.$newFilters, $filters);
-            $filters = 'import {'.$studly_name."Filter} from './filters/{$name}/{$name}.filter';\n".$filters;
+            $filters = 'import {'.$studly_name."Filter} from './filters/{$name}.filter';\n".$filters;
             file_put_contents($filters_index, $filters);
         }
 
