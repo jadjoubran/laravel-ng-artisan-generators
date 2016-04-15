@@ -1,18 +1,24 @@
 <md-dialog ng-controller="{{StudlyName}}Controller as vm">
     <form ng-submit="vm.save()">
+    
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>{{HumanReadableName}}</h2>
+          </div>
+        </md-toolbar>
+        
         <md-dialog-content>
-            <h2 class="md-title">{{HumanReadableName}}</h2>
-
-            <md-input-container flex>
-                <label>Data</label>
-                <input type="text">
-              </md-input-container>
-
+            <div class="md-dialog-content">
+                <md-input-container flex>
+                    <label>Data</label>
+                    <input type="text">
+                </md-input-container>
+             </div>
         </md-dialog-content>
 
-        <md-dialog-actions layout="row">
+        <md-dialog-actions>
             <md-button type="button" ng-click="vm.hide()">Cancel</md-button>
             <md-button class="md-primary md-raised" type="submit">Save</md-button>
-        <md-dialog-actions>
+        </md-dialog-actions>
     </form>
 </md-dialog>
