@@ -10,9 +10,9 @@
 
         </md-dialog-content>
 
-        <div class="md-actions" layout="row">
+        <md-dialog-actions layout="row">
             <md-button type="button" ng-click="vm.hide()">Cancel</md-button>
             <md-button class="md-primary md-raised" type="submit">Save</md-button>
-        </div>
+        <md-dialog-actions>
     </form>
 </md-dialog>
