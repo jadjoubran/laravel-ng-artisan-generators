@@ -1,12 +1,12 @@
-<md-dialog ng-controller="{{StudlyName}}Controller as vm">
+<md-dialog>
     <form ng-submit="vm.save()">
-    
+
         <md-toolbar>
           <div class="md-toolbar-tools">
             <h2>{{HumanReadableName}}</h2>
           </div>
         </md-toolbar>
-        
+
         <md-dialog-content>
             <div class="md-dialog-content">
                 <md-input-container flex>
