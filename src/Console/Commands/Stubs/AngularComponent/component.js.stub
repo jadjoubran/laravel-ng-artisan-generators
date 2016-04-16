@@ -4,6 +4,9 @@ class {{StudlyName}}Controller{
 
         //
     }
+
+    $onInit(){
+    }
 }
 
 export const {{StudlyName}}Component = {
