@@ -80,7 +80,7 @@ class AngularDirective extends Command
             $newDirective = "\r\n\t.directive('$directiveName', {$studly_name}Directive)";
             $module = "angular.module('app.directives')";
             $directives = str_replace($module, $module.$newDirective, $directives);
-            $directives = 'import {'.$studly_name."Directive} from './app/directives/{$name}/{$name}.directive';\n".$directives;
+            $directives = 'import {'.$studly_name."Directive} from './directives/{$name}/{$name}.directive';\n".$directives;
             file_put_contents($directives_index, $directives);
         }
 
