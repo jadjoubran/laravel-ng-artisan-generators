@@ -29,6 +29,7 @@ class LaravelServiceProvider extends ServiceProvider
             'LaravelAngular\Generators\Console\Commands\AngularConfig',
             'LaravelAngular\Generators\Console\Commands\AngularDialog',
             'LaravelAngular\Generators\Console\Commands\AngularComponent',
+            'LaravelAngular\Generators\Console\Commands\AngularDirective',
             'LaravelAngular\Generators\Console\Commands\AngularPage',
             'LaravelAngular\Generators\Console\Commands\AngularFilter',
             'LaravelAngular\Generators\Console\Commands\AngularService',

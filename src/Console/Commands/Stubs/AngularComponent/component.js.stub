@@ -15,5 +15,3 @@ export const {{StudlyName}}Component = {
     controllerAs: 'vm',
     bindings: {}
 }
-
-

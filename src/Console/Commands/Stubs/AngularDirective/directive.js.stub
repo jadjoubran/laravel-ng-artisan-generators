@@ -1,0 +1,14 @@
+class {{StudlyName}}Controller{
+    constructor(){
+        'ngInject';
+
+        //
+    }
+}
+
+export const {{StudlyName}}Directive = {
+    controller: {{StudlyName}}Controller,
+    link: function(scope, element, attrs, controllers){
+        //
+    }
+}
