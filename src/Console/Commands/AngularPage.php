@@ -12,7 +12,7 @@ class AngularPage extends Command
      *
      * @var string
      */
-    protected $signature = 'ng:page {name}';
+    protected $signature = 'ng:page {name} {--p|path=/ : If you want to create it in an existing folder or a custom one}';
 
     /**
      * The console command description.
@@ -39,11 +39,14 @@ class AngularPage extends Command
     public function handle()
     {
         $name = $this->argument('name');
+        $path = $this->option('path');
+        
+        $path = ($path !== '/' ? '/'.$path.'/' : $path);
 
         $html = file_get_contents(__DIR__.'/Stubs/AngularPage/page.html.stub');
         $less = file_get_contents(__DIR__.'/Stubs/AngularPage/page.less.stub');
 
-        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.page').'/'.$name;
+        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.page').$path.$name;
         if (is_dir($folder)) {
             $this->info('Folder already exists');
 
