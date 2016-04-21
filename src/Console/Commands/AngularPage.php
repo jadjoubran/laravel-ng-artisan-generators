@@ -12,7 +12,7 @@ class AngularPage extends Command
      *
      * @var string
      */
-    protected $signature = 'ng:page {name} {--p|path=/ : If you want to create it in an existing folder or a custom one}';
+    protected $signature = 'ng:page {name} {--P|path=/ : If you want to create it in an existing folder or a custom one}';
 
     /**
      * The console command description.
