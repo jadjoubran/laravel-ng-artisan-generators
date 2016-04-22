@@ -40,19 +40,19 @@ class AngularPage extends Command
     {
         
         //Gets the argument and split it into an array
-        $myArray = explode('/', $this->argument('name'));
+        $pathArray = explode('/', $this->argument('name'));
 
         //Gets the last element of the array, that it should be the name of the page
-        $name = end($myArray);
+        $name = end($pathArray);
 
         //Deletes the last element of the Array (we store it in the variable $name)
-        array_pop($myArray);
+        array_pop($pathArray);
 
         //Initialize the variable $path with a '/' cause if the array <= 0 it means there's no path, and we should use the default route
         $path = '/';        
 
         //We iterate trought the array to concatenate it again, adding always a '/' at the end of each array element
-        foreach ($myArray as $value){
+        foreach ($pathArray as $value){
             $path = $path.$value.'/';
         }        
 
