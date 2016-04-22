@@ -38,7 +38,7 @@ class AngularPage extends Command
      */
     public function handle()
     {
-        
+
         //Gets the argument and split it into an array
         $pathArray = explode('/', $this->argument('name'));
 
@@ -49,12 +49,12 @@ class AngularPage extends Command
         array_pop($pathArray);
 
         //Initialize the variable $path with a '/' cause if the array <= 0 it means there's no path, and we should use the default route
-        $path = '/';        
+        $path = '/';
 
         //We iterate trought the array to concatenate it again, adding always a '/' at the end of each array element
-        foreach ($pathArray as $value){
+        foreach ($pathArray as $value) {
             $path = $path.$value.'/';
-        }        
+        }
 
         $html = file_get_contents(__DIR__.'/Stubs/AngularPage/page.html.stub');
         $less = file_get_contents(__DIR__.'/Stubs/AngularPage/page.less.stub');
