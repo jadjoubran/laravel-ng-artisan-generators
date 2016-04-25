@@ -17,7 +17,7 @@
         </md-dialog-content>
 
         <md-dialog-actions>
-            <md-button type="button" ng-click="vm.hide()">Cancel</md-button>
+            <md-button type="button" ng-click="vm.cancel()">Cancel</md-button>
             <md-button class="md-primary md-raised" type="submit">Save</md-button>
         </md-dialog-actions>
     </form>
