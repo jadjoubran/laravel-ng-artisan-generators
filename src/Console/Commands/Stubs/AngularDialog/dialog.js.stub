@@ -9,8 +9,8 @@ export class {{StudlyName}}Controller{
         //
     }
 
-    hide(){
-        this.DialogService.hide();
+    cance(){
+        this.DialogService.cancel();
     }
 }
 
