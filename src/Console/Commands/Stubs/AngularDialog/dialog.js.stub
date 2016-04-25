@@ -9,7 +9,7 @@ export class {{StudlyName}}Controller{
         //
     }
 
-    cance(){
+    cancel(){
         this.DialogService.cancel();
     }
 }
