@@ -6,7 +6,8 @@ export class {{StudlyName}}Controller{
     }
 
     save(){
-        //
+        //Logic here
+        this.DialogService.hide();
     }
 
     cancel(){
