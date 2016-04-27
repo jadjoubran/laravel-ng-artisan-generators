@@ -1,0 +1,10 @@
+export class ExampleToastController{
+    constructor(ToastService){
+        'ngInject';
+        this.ToastService = ToastService;
+    }
+
+    closeToast(){
+        this.ToastService.hide();
+    }
+}
