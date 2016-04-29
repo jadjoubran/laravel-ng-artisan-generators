@@ -65,7 +65,7 @@ class AngularDialog extends Command
 
         //create controller (.js)
         File::put($folder.'/'.$name.config('generators.prefix.dialog'), $js);
-        
+
         //create less file (.less)
         File::put($folder.'/'.$name.'.less', $less);
 
