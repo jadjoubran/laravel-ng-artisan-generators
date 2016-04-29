@@ -6,7 +6,8 @@ class {{StudlyName}}Controller{
     }
 }
 
-export const {{StudlyName}}Directive = {
+export function {{StudlyName}}Directive(){
+    //selector: '',
     controller: {{StudlyName}}Controller,
     link: function(scope, element, attrs, controllers){
         //
