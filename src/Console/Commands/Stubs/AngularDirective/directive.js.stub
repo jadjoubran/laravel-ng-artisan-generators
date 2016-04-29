@@ -7,9 +7,10 @@ class {{StudlyName}}Controller{
 }
 
 export function {{StudlyName}}Directive(){
-    //selector: '',
-    controller: {{StudlyName}}Controller,
-    link: function(scope, element, attrs, controllers){
-        //
+    return {
+        controller: {{StudlyName}}Controller,
+        link: function(scope, element, attrs, controllers){
+            //
+        }
     }
 }
