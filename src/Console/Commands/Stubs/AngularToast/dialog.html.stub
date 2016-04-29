@@ -1,0 +1,9 @@
+<md-toast>
+    <span class="md-toast-text" flex>{{HumanReadableName}}</span>
+    <md-button class="md-highlight">
+        More info
+    </md-button>
+    <md-button ng-click="vm.closeToast()">
+        Close
+    </md-button>
+</md-toast>

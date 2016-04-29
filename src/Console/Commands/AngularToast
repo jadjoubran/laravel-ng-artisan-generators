@@ -1,10 +1,7 @@
 <?php
-
 namespace LaravelAngular\Generators\Console\Commands;
-
 use File;
 use Illuminate\Console\Command;
-
 class AngularDialog extends Command
 {
     /**
@@ -12,15 +9,13 @@ class AngularDialog extends Command
      *
      * @var string
      */
-    protected $signature = 'ng:dialog {name}';
-
+    protected $signature = 'ng:toast {name}';
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new dialog in angular/dialog';
-
+    protected $description = 'Create a new toast in angular/toasts';
     /**
      * Create a new command instance.
      *
@@ -30,7 +25,6 @@ class AngularDialog extends Command
     {
         parent::__construct();
     }
-
     /**
      * Execute the console command.
      *
@@ -41,34 +35,22 @@ class AngularDialog extends Command
         $name = $this->argument('name');
         $studly_name = studly_case($name);
         $human_readable = ucfirst(str_replace('_', ' ', $name));
-
-        $html = file_get_contents(__DIR__.'/Stubs/AngularDialog/dialog.html.stub');
-        $js = file_get_contents(__DIR__.'/Stubs/AngularDialog/dialog.js.stub');
-
+        $html = file_get_contents(__DIR__.'/Stubs/AngularToast/toast.html.stub');
+        $js = file_get_contents(__DIR__.'/Stubs/AngularToast/toast.js.stub');
         $html = str_replace('{{StudlyName}}', $studly_name, $html);
         $js = str_replace('{{StudlyName}}', $studly_name, $js);
         $html = str_replace('{{HumanReadableName}}', $human_readable, $html);
-
-        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.dialogs').'/'.$name;
-
+        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.toasts').'/'.$name;
         if (is_dir($folder)) {
             $this->info('Folder already exists');
-
             return false;
         }
-
         //create folder
         File::makeDirectory($folder, 0775, true);
-
         //create view (.html)
-        File::put($folder.'/'.$name.config('generators.prefix.dialogView', '.html'), $html);
-
+        File::put($folder.'/'.$name.config('generators.prefix.toastView', '.html'), $html);
         //create controller (.js)
-        File::put($folder.'/'.$name.config('generators.prefix.dialog'), $js);
-
-        //create less file (.less)
-        File::put($folder.'/'.$name.'.less', $less);
-
+        File::put($folder.'/'.$name.config('generators.prefix.toast'), $js);
         $this->info('Dialog created successfully.');
     }
 }
