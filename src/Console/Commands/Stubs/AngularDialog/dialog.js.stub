@@ -6,11 +6,12 @@ export class {{StudlyName}}Controller{
     }
 
     save(){
-        //
+        //Logic here
+        this.DialogService.hide();
     }
 
-    hide(){
-        this.DialogService.hide();
+    cancel(){
+        this.DialogService.cancel();
     }
 }
 
