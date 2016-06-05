@@ -67,10 +67,10 @@ class AngularComponent extends Command
         File::makeDirectory($folder, 0775, true);
 
         //create view (.component.html)
-        File::put($folder.'/'.$name.config('generators.prefix.componentView'), $html);
+        File::put($folder.'/'.$name.config('generators.suffix.componentView'), $html);
 
         //create component (.component.js)
-        File::put($folder.'/'.$name.config('generators.prefix.component'), $js);
+        File::put($folder.'/'.$name.config('generators.suffix.component'), $js);
 
         //create less file (.less)
         File::put($folder.'/'.$name.'.less', $less);
