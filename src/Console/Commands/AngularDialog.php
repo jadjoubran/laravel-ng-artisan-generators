@@ -61,10 +61,10 @@ class AngularDialog extends Command
         File::makeDirectory($folder, 0775, true);
 
         //create view (.html)
-        File::put($folder.'/'.$name.config('generators.prefix.dialogView', '.html'), $html);
+        File::put($folder.'/'.$name.config('generators.suffix.dialogView', '.html'), $html);
 
         //create controller (.js)
-        File::put($folder.'/'.$name.config('generators.prefix.dialog'), $js);
+        File::put($folder.'/'.$name.config('generators.suffix.dialog'), $js);
 
         $this->info('Dialog created successfully.');
     }

@@ -71,7 +71,7 @@ class AngularPage extends Command
         File::makeDirectory($folder, 0775, true);
 
         //create view (.page.html)
-        File::put($folder.'/'.$name.config('generators.prefix.pageView'), $html);
+        File::put($folder.'/'.$name.config('generators.suffix.pageView'), $html);
 
         //create less file (.less)
         File::put($folder.'/'.$name.'.less', $less);

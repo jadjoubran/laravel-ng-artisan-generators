@@ -54,7 +54,7 @@ class AngularService extends Command
         $spec_folder = base_path(config('generators.tests.source.root')).'/'.config('generators.tests.source.services');
 
         //create service (.service.js)
-        File::put($folder.'/'.$name.config('generators.prefix.service'), $js);
+        File::put($folder.'/'.$name.config('generators.suffix.service'), $js);
 
         if (!$this->option('no-spec') && config('generators.tests.enable.services')) {
             //create spec (.service.spec.js)
