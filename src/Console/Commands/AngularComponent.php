@@ -46,7 +46,7 @@ class AngularComponent extends Command
 
         $html = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.html.stub');
         $js = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.js.stub');
-        $style = file_get_contents(__DIR__ . '/Stubs/AngularComponent/component.style.stub');
+        $style = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.style.stub');
         $spec = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.spec.js.stub');
 
         $js = str_replace('{{StudlyName}}', $studly_name, $js);

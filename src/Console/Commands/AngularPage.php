@@ -57,7 +57,7 @@ class AngularPage extends Command
         }
 
         $html = file_get_contents(__DIR__.'/Stubs/AngularPage/page.html.stub');
-        $style = file_get_contents(__DIR__ . '/Stubs/AngularPage/page.style.stub');
+        $style = file_get_contents(__DIR__.'/Stubs/AngularPage/page.style.stub');
 
         $folder = base_path(config('generators.source.root')).'/'.config('generators.source.page').$path.$name;
 
