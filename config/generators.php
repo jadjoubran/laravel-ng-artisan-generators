@@ -37,5 +37,6 @@ return [
       ],
       'misc' => [
             'auto_import' => true,
+            'stylesheet_language' => 'less', // less, scss or css
       ],
 ];
