@@ -74,7 +74,7 @@ class AngularPage extends Command
         File::put($folder.'/'.$name.config('generators.suffix.pageView'), $html);
 
         //create style file
-        File::put($folder.'/'.$name.'.'.config('generators.misc.stylesheet_language', 'less'), $style);
+        File::put($folder.'/'.$name.'.'.config('generators.suffix.stylesheet', 'less'), $style);
 
         $this->info('Page created successfully.');
     }

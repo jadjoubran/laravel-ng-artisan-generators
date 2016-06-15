@@ -21,6 +21,7 @@ return [
             'config'          => '.config.js',
             'filter'          => '.filter.js',
             'pageView'        => '.page.html',
+            'stylesheet'      => 'less', // less, scss or css
       ],
       'tests' => [
             'enable' => [
@@ -37,6 +38,5 @@ return [
       ],
       'misc' => [
             'auto_import'         => true,
-            'stylesheet_language' => 'less', // less, scss or css
       ],
 ];
