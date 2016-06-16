@@ -57,7 +57,7 @@ class AngularPage extends Command
         }
 
         $html = file_get_contents(__DIR__.'/Stubs/AngularPage/page.html.stub');
-        $less = file_get_contents(__DIR__.'/Stubs/AngularPage/page.less.stub');
+        $style = file_get_contents(__DIR__.'/Stubs/AngularPage/page.style.stub');
 
         $folder = base_path(config('generators.source.root')).'/'.config('generators.source.page').$path.$name;
 
@@ -73,8 +73,8 @@ class AngularPage extends Command
         //create view (.page.html)
         File::put($folder.'/'.$name.config('generators.suffix.pageView'), $html);
 
-        //create less file (.less)
-        File::put($folder.'/'.$name.'.less', $less);
+        //create style file
+        File::put($folder.'/'.$name.'.'.config('generators.suffix.stylesheet', 'less'), $style);
 
         $this->info('Page created successfully.');
     }

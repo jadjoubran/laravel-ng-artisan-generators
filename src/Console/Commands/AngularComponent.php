@@ -46,7 +46,7 @@ class AngularComponent extends Command
 
         $html = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.html.stub');
         $js = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.js.stub');
-        $less = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.less.stub');
+        $style = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.style.stub');
         $spec = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.spec.js.stub');
 
         $js = str_replace('{{StudlyName}}', $studly_name, $js);
@@ -72,8 +72,8 @@ class AngularComponent extends Command
         //create component (.component.js)
         File::put($folder.'/'.$name.config('generators.suffix.component'), $js);
 
-        //create less file (.less)
-        File::put($folder.'/'.$name.'.less', $less);
+        //create style file
+        File::put($folder.'/'.$name.'.'.config('generators.suffix.stylesheet', 'less'), $style);
 
         if (!$this->option('no-spec') && config('generators.tests.enable.components')) {
             //create spec file (.component.spec.js)
