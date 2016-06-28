@@ -2,7 +2,6 @@
 
 namespace LaravelAngular\Generators\Console\Commands;
 
-use File;
 use Illuminate\Console\Command;
 
 class PwaManifest extends Command
@@ -42,17 +41,17 @@ class PwaManifest extends Command
             'icons' => [
                 'src'   => 'img/icon.png',
                 'sizes' => '198x198',
-                'type'  => 'image/png'
-            ]
+                'type'  => 'image/png',
+            ],
         ];
 
-        $manifest['lang']             = $this->ask('Enter the language', 'en-us');
-        $manifest['name']             = $this->ask('Enter the name of your app', 'Laravel & Angular');
-        $manifest['short_name']       = $this->ask('Enter the short name of your app', 'Laravel & Angular');
-        $manifest['display']          = $this->anticipate('Choose a display type?', ['fullscreen', 'standalone', 'minimal-ui', 'browser'], 'standalone');
-        $manifest['start_url']        = $this->ask('Enter the start url', '/?homescreen=1');
+        $manifest['lang'] = $this->ask('Enter the language', 'en-us');
+        $manifest['name'] = $this->ask('Enter the name of your app', 'Laravel & Angular');
+        $manifest['short_name'] = $this->ask('Enter the short name of your app', 'Laravel & Angular');
+        $manifest['display'] = $this->anticipate('Choose a display type?', ['fullscreen', 'standalone', 'minimal-ui', 'browser'], 'standalone');
+        $manifest['start_url'] = $this->ask('Enter the start url', '/?homescreen=1');
         $manifest['background_color'] = $this->ask('Enter a background color: ', '#ffffff');
-        $manifest['theme_color']      = $this->ask('Enter your theme color', '#0690B7');
+        $manifest['theme_color'] = $this->ask('Enter your theme color', '#0690B7');
 
         $output = json_encode($manifest, JSON_PRETTY_PRINT);
 
