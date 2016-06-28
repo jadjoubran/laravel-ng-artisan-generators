@@ -45,13 +45,11 @@ class PwaManifest extends Command
         $manifest['background_color'] = $this->ask('Enter a background color: ', '#ffffff');
         $manifest['theme_color'] = $this->ask('Enter your theme color', '#0690B7');
 
-        $manifest = [
-            'icons' => [[
+        $manifest['icons'] = [[
                 'src'   => 'img/icon.png',
                 'sizes' => '198x198',
                 'type'  => 'image/png',
-            ]],
-        ];
+            ]];
 
         $output = json_encode($manifest, JSON_PRETTY_PRINT);
 
