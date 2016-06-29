@@ -21,7 +21,7 @@ return [
             'config'          => '.config.js',
             'filter'          => '.filter.js',
             'pageView'        => '.page.html',
-            'stylesheet'      => 'less', // less, scss or css
+            'stylesheet'      => 'scss', // less, scss or css
       ],
       'tests' => [
             'enable' => [
