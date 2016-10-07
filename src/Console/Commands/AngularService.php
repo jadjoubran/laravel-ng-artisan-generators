@@ -61,7 +61,6 @@ class AngularService extends Command
             if (!File::exists($spec_folder)) {
                 File::makeDirectory($spec_folder, 0775, true);
             }
-            
             //create spec (.service.spec.js)
             File::put($spec_folder.'/'.$name.'.service.spec.js', $spec);
         }
