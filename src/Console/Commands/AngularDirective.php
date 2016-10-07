@@ -68,6 +68,10 @@ class AngularDirective extends Command
         File::put($folder.'/'.$name.config('generators.suffix.directive'), $js);
 
         if (!$this->option('no-spec') && config('generators.tests.enable.directives')) {
+            //create spec folder
+            if (!File::exists($spec_folder)) {
+                File::makeDirectory($spec_folder, 0775, true);
+            }
             //create spec file (.directive.spec.js)
             File::put($spec_folder.'/'.$name.'.directive.spec.js', $spec);
         }
