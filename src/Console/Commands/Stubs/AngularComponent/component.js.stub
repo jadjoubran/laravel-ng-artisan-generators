@@ -14,4 +14,4 @@ export const {{StudlyName}}Component = {
     controller: {{StudlyName}}Controller,
     controllerAs: 'vm',
     bindings: {}
-}
+};
