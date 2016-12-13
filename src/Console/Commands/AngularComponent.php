@@ -40,7 +40,23 @@ class AngularComponent extends Command
      */
     public function handle()
     {
-        $name = $this->argument('name');
+        // Gets the argument and split it into an array
+        $pathArray = explode('/', $this->argument('name'));
+
+        // Gets the last element of the array, that it should be the name of the component
+        $name = end($pathArray);
+
+        // Deletes the last element of the Array (we store it in the variable $name)
+        array_pop($pathArray);
+
+        // Initialize the variable $path with a '/' cause if the array <= 0 it means there's no path, and we should use the deafult route
+        $path = '/';
+
+        // We iterate through the array to concatenat it again, adding always a '/' at the end of each array element
+        foreach ($pathArray as $value) {
+            $path = $path.$value.'/';
+        }
+
         $studly_name = studly_case($name);
         $ng_component = str_replace('_', '-', $name);
 
@@ -51,10 +67,11 @@ class AngularComponent extends Command
 
         $js = str_replace('{{StudlyName}}', $studly_name, $js);
         $js = str_replace('{{name}}', $name, $js);
+        $js = str_replace('{{path}}', $path, $js);
 
         $spec = str_replace('{{ng-component}}', $ng_component, $spec);
 
-        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.components').'/'.$name;
+        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.components').$path.$name;
         if (is_dir($folder)) {
             $this->info('Folder already exists');
 
@@ -92,7 +109,7 @@ class AngularComponent extends Command
             $newComponent = "\r\n\t.component('$componentName', {$studly_name}Component)";
             $module = "angular.module('app.components')";
             $components = str_replace($module, $module.$newComponent, $components);
-            $components = 'import {'.$studly_name."Component} from './app/components/{$name}/{$name}.component';\n".$components;
+            $components = 'import {'.$studly_name."Component} from './app/components{$path}{$name}/{$name}.component';\n".$components;
             file_put_contents($components_index, $components);
         }
 
