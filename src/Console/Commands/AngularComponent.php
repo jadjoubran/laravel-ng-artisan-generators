@@ -1,7 +1,10 @@
 <?php
+
 namespace LaravelAngular\Generators\Console\Commands;
+
 use File;
 use Illuminate\Console\Command;
+
 class AngularComponent extends Command
 {
     /**
@@ -19,6 +22,7 @@ class AngularComponent extends Command
      * @var string
      */
     protected $description = 'Create a new component in angular/components';
+
     /**
      * Create a new command instance.
      *
@@ -28,6 +32,7 @@ class AngularComponent extends Command
     {
         parent::__construct();
     }
+
     /**
      * Execute the console command.
      *
@@ -72,6 +77,7 @@ class AngularComponent extends Command
         $folder = base_path(config('generators.source.root')).'/'.config('generators.source.components').$path.$name;
         if (is_dir($folder)) {
             $this->info('Folder already exists');
+
             return false;
         }
         $spec_folder = base_path(config('generators.tests.source.root')).'/'.config('generators.tests.source.components');
