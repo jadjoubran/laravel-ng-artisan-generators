@@ -1,15 +1,11 @@
 {
-    "name": "owelaravelangular/generators",
+    "name": "ankitparmar372/laravel-ng-artisan-generators",
     "description": "Angular generators for Artisan",
     "license": "MIT",
     "authors": [
         {
-            "name": "Alessandro Rovito",
-            "email": "alessandro.rovito@gmail.com"
-        },
-        {
-            "name": "Jad Joubran",
-            "email": "joubran.jad@gmail.com"
+            "name": "Ankit parmar",
+            "email": "ankitparmar372@gmail.com"
         }
     ],
     "require": {
