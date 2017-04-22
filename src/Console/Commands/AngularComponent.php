@@ -73,7 +73,9 @@ class AngularComponent extends Command
         File::put($folder.'/'.$name.config('generators.suffix.component'), $js);
 
         //create style file
-        File::put($folder.'/'.$name.'.'.config('generators.suffix.stylesheet', 'scss'), $style);
+        if (config('generators.stylesheets.enable')) {
+            File::put($folder.'/'.$name.'.'.config('generators.suffix.stylesheet', 'scss'), $style);
+        }
 
         if (!$this->option('no-spec') && config('generators.tests.enable.components')) {
             //create spec folder
