@@ -37,7 +37,7 @@ return [
             ],
       ],
       'stylesheets' => [
-            'enable' => true
+            'enable' => true,
       ],
       'misc' => [
             'auto_import'         => true,
