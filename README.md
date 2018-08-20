@@ -27,7 +27,7 @@ php artisan ng:filter name     #New filter inside angular/filters/
 php artisan ng:service name    #New service inside angular/services/
 ```
 
-Theese commands will create new directories and files for AngularJS front-end in new ES6 syntax. 
+These commands will create new directories and files for AngularJS front-end in new ES6 syntax. 
 If not present, commands will create index files (i.e.: `index.components.js`) and, if enabled, new created classes will be imported.
 
 Configurations are editable in `config\generators.php`. See below for details.
@@ -44,7 +44,7 @@ Configurations are editable in `config\generators.php`. See below for details.
    * **enable**: whether to enable or disable creation of test files
    * **source**: same as `source`, but for test files
 * **misc.auto_import**: enable or disable automatic import in index files.
-* **angular_modules**: configuration for angular root module and submodules. If index files are created before or manually, theese settings will help recognize angular modules for automatic import. If index file is created on first command run, theese settings will create angular module for you.
+* **angular_modules**: configuration for angular root module and submodules. If index files are created before or manually, these settings will help recognize angular modules for automatic import. If index file is created on first command run, these settings will create angular module for you.
    * **root**: angular root module.
    * **standalone**: if a module is defined as standalone (i.e.: `angular.module('mymodule', [])`) or is part of a root module (`angular.module('mymodule')`). If set to false, `use_prefix`, `prefix` and `suffix` will be ignored and root module name will be used.
    * **prefix** and **suffix**: name of module of the type `prefix.suffix`; i.e.: `app.components`.
