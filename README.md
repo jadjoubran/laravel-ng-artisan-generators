@@ -1,6 +1,6 @@
-# Laravel Angular Artisan Generators
+# Laravel AngularJS Artisan Generators
 
-Angular generators for Artisan. Originally created at [laravel5-angular-material-starter](https://github.com/jadjoubran/laravel5-angular-material-starter).
+AngularJS generators for Artisan. Originally created at [laravel5-angular-material-starter](https://github.com/jadjoubran/laravel5-angular-material-starter).
 
 
 # Installation
@@ -27,7 +27,7 @@ php artisan ng:filter name     #New filter inside angular/filters/
 php artisan ng:service name    #New service inside angular/services/
 ```
 
-Theese commands will create new directories and files for AngularJS front-end. 
+Theese commands will create new directories and files for AngularJS front-end in new ES6 syntax. 
 If not present, commands will create index files (i.e.: `index.components.js`) and, if enabled, new created classes will be imported.
 
 Configurations are editable in `config\generators.php`. See below for details.
