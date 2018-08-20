@@ -53,8 +53,16 @@ class AngularService extends Command
 
         $spec_folder = base_path(config('generators.tests.source.root')).'/'.config('generators.tests.source.services');
 
+        if(!File::exists($folder))
+            File::makeDirectory($folder, 0775, true);
+        
         //create service (.service.js)
-        File::put($folder.'/'.$name.config('generators.suffix.service'), $js);
+        if(!File::exists($folder.'/'.$name.config('generators.suffix.service')))
+            File::put($folder.'/'.$name.config('generators.suffix.service'), $js);
+        else{
+            $this->info('Service already exists.');
+            return false;
+        }
 
         if (!$this->option('no-spec') && config('generators.tests.enable.services')) {
             //create spec folder
@@ -67,10 +75,22 @@ class AngularService extends Command
 
         //import service
         $services_index = base_path(config('generators.source.root')).'/index.services.js';
-        if (config('generators.misc.auto_import') && !$this->option('no-import') && file_exists($services_index)) {
+
+        if(!config('generators.angular_modules.services.standalone'))
+            $module = "angular.module('".config('generators.angular_modules.root')."')";
+        else
+            $module = "angular.module('"
+                      .(config('generators.angular_modules.services.use_prefix') ? config('generators.angular_modules.services.prefix')."." : "")
+                      .config('generators.angular_modules.services.suffix')
+                      ."', [])";
+
+        if(!file_exists($services_index)){
+            File::put($services_index, $module);
+        }
+
+        if (config('generators.misc.auto_import') && !$this->option('no-import')) {
             $services = file_get_contents($services_index);
             $newService = "\r\n\t.service('{$studly_name}Service', {$studly_name}Service)";
-            $module = "angular.module('app.services')";
             $services = str_replace($module, $module.$newService, $services);
             $services = 'import {'.$studly_name."Service} from './services/{$name}.service';\n".$services;
             file_put_contents($services_index, $services);

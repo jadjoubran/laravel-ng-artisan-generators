@@ -47,17 +47,36 @@ class AngularConfig extends Command
 
         $js = str_replace('{{StudlyName}}', $studly_name, $js);
 
-        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.config').'/';
+        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.config');
 
+        if(!File::exists($folder))
+            File::makeDirectory($folder, 0775, true);
+        
         //create config (.js)
-        File::put($folder.'/'.$name.config('generators.suffix.config'), $js);
+        if(!File::exists($folder.'/'.$name.config('generators.suffix.config')))
+            File::put($folder.'/'.$name.config('generators.suffix.config'), $js);
+        else{
+            $this->info('Config already exists.');
+            return false;
+        }
 
         //import config
         $config_index = base_path(config('generators.source.root')).'/index.config.js';
-        if (config('generators.misc.auto_import') && !$this->option('no-import') && file_exists($config_index)) {
+        
+        if(!config('generators.angular_modules.config.standalone'))
+            $module = "angular.module('".config('generators.angular_modules.root')."')";
+        else
+            $module = "angular.module('"
+                      .(config('generators.angular_modules.config.use_prefix') ? config('generators.angular_modules.config.prefix')."." : "")
+                      .config('generators.angular_modules.config.suffix')
+                      ."', [])";
+                      
+        if(!file_exists($config_index))
+            File::put($config_index, $module);
+
+        if (config('generators.misc.auto_import') && !$this->option('no-import')) {
             $configs = file_get_contents($config_index);
             $newConfig = "\r\n\t.config({$studly_name}Config)";
-            $module = "angular.module('app.config')";
             $configs = str_replace($module, $module.$newConfig, $configs);
             $configs = 'import {'.$studly_name."Config} from './config/{$name}.config';\n".$configs;
             file_put_contents($config_index, $configs);

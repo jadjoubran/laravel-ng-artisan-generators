@@ -86,11 +86,22 @@ class AngularComponent extends Command
 
         //import component
         $components_index = base_path(config('generators.source.root')).'/index.components.js';
-        if (config('generators.misc.auto_import') && !$this->option('no-import') && file_exists($components_index)) {
+        
+        if(!config('generators.angular_modules.components.standalone'))
+            $module = "angular.module('".config('generators.angular_modules.root')."')";
+        else
+            $module = "angular.module('"
+                      .(config('generators.angular_modules.components.use_prefix') ? config('generators.angular_modules.components.prefix')."." : "")
+                      .config('generators.angular_modules.components.suffix')
+                      ."', [])";
+
+        if(!file_exists($components_index))
+            File::put($components_index, $module);
+
+        if (config('generators.misc.auto_import') && !$this->option('no-import')) {
             $components = file_get_contents($components_index);
             $componentName = lcfirst($studly_name);
             $newComponent = "\r\n\t.component('$componentName', {$studly_name}Component)";
-            $module = "angular.module('app.components')";
             $components = str_replace($module, $module.$newComponent, $components);
             $components = 'import {'.$studly_name."Component} from './app/components/{$name}/{$name}.component';\n".$components;
             file_put_contents($components_index, $components);
