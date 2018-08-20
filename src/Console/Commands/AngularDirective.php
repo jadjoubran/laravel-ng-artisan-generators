@@ -52,20 +52,20 @@ class AngularDirective extends Command
 
         $spec = str_replace('{{ng-directive}}', $ng_directive, $spec);
 
-        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.directives').'/'.$name;
-        if (is_dir($folder)) {
-            $this->info('Folder already exists');
-
-            return false;
-        }
+        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.directives');
+        
+        if (! File::exists($folder)) 
+            File::makeDirectory($folder, 0775, true);
 
         $spec_folder = base_path(config('generators.tests.source.root')).'/'.config('generators.tests.source.directives');
 
-        //create folder
-        File::makeDirectory($folder, 0775, true);
-
         //create directive (.directive.js)
-        File::put($folder.'/'.$name.config('generators.suffix.directive'), $js);
+        if(!File::exists($folder.'/'.$name.config('generators.suffix.directive')))
+            File::put($folder.'/'.$name.config('generators.suffix.directive'), $js);
+        else{
+            $this->info('Directive already exists.');
+            return false;
+        }
 
         if (!$this->option('no-spec') && config('generators.tests.enable.directives')) {
             //create spec folder
@@ -78,11 +78,22 @@ class AngularDirective extends Command
 
         //import directive
         $directives_index = base_path(config('generators.source.root')).'/index.directives.js';
-        if (config('generators.misc.auto_import') && !$this->option('no-import') && file_exists($directives_index)) {
+        
+        if(!config('generators.angular_modules.directives.standalone'))
+            $module = "angular.module('".config('generators.angular_modules.root')."')";
+        else
+            $module = "angular.module('"
+                      .(config('generators.angular_modules.directives.use_prefix') ? config('generators.angular_modules.directives.prefix')."." : "")
+                      .config('generators.angular_modules.directives.suffix')
+                      ."', [])";
+
+        if(!file_exists($directives_index))
+            File::put($directives_index, $module);
+
+        if (config('generators.misc.auto_import') && !$this->option('no-import')) {
             $directives = file_get_contents($directives_index);
             $directiveName = lcfirst($studly_name);
             $newDirective = "\r\n\t.directive('$directiveName', {$studly_name}Directive)";
-            $module = "angular.module('app.directives')";
             $directives = str_replace($module, $module.$newDirective, $directives);
             $directives = 'import {'.$studly_name."Directive} from './directives/{$name}/{$name}.directive';\n".$directives;
             file_put_contents($directives_index, $directives);
