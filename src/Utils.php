@@ -102,7 +102,7 @@ class Utils
      * @param string $type   can be "components", "directives", "config", "dialogs", "filters", "pages" or "services"
      * @param string $name   name (specified by the user) of file to import
      */
-    public static function import($type, $name, $suffix)
+    public static function import($type, $name, $suffix, $reimport = false)
     {
         $index_path = base_path(config('generators.source.root'))."/index.$type.js";
         $module = self::moduleName($type);
@@ -114,7 +114,7 @@ class Utils
             $content = "\n".$module; //save a sys call to get file content: if we're going to create it we will know what it contains
             File::put($index_path, "\n".$module);
         } else {
-            $content = File::get($index_path);
+            $content = $reimport ? "\n".$module : File::get($index_path);
         }
         
         $vars = [
