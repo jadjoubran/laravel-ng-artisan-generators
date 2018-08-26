@@ -3,7 +3,7 @@
 
         <md-toolbar>
           <div class="md-toolbar-tools">
-            <h2>{{HumanReadableName}}</h2>
+            <h2>{{$human_redable}}</h2>
           </div>
         </md-toolbar>
 

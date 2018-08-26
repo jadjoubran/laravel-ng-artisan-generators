@@ -4,6 +4,7 @@ namespace LaravelAngular\Generators\Console\Commands;
 
 use File;
 use Illuminate\Console\Command;
+use LaravelAngular\Generators\Utils;
 
 class AngularDialog extends Command
 {
@@ -29,6 +30,8 @@ class AngularDialog extends Command
     public function __construct()
     {
         parent::__construct();
+
+        view()->replaceNamespace('Stubs', __DIR__.'/Stubs');
     }
 
     /**
@@ -42,29 +45,33 @@ class AngularDialog extends Command
         $studly_name = studly_case($name);
         $human_readable = ucfirst(str_replace('_', ' ', $name));
 
-        $html = file_get_contents(__DIR__.'/Stubs/AngularDialog/dialog.html.stub');
-        $js = file_get_contents(__DIR__.'/Stubs/AngularDialog/dialog.js.stub');
+        $config = Utils::getConfig('dialogs', false);
 
-        $html = str_replace('{{StudlyName}}', $studly_name, $html);
-        $js = str_replace('{{StudlyName}}', $studly_name, $js);
-        $html = str_replace('{{HumanReadableName}}', $human_readable, $html);
+        $files = [
+            'templates' => [
+                [
+                    'template' => 'Stubs::AngularDialog.html',
+                    'vars'     => [
+                        'human_redable' => $human_readable,
+                    ],
+                    'path'     => $config['path'].'/'.$name,
+                    'name'     => $name.$config['suffix']['html'],
+                ],
+                [
+                    'template' => 'Stubs::AngularDialog.js',
+                    'vars'     => [
+                        'studly_name' => $studly_name,
+                    ],
+                    'path'     => $config['path'].'/'.$name,
+                    'name'     => $name.$config['suffix']['js'],
+                ],
+            ],
+        ];
 
-        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.dialogs').'/'.$name;
-
-        if (is_dir($folder)) {
-            $this->info('Folder already exists');
-
+        if(! Utils::createFiles($files, false, true)) {
+            $this->info('Dialog already exists.');
             return false;
         }
-
-        //create folder
-        File::makeDirectory($folder, 0775, true);
-
-        //create view (.html)
-        File::put($folder.'/'.$name.config('generators.suffix.dialogView', '.html'), $html);
-
-        //create controller (.js)
-        File::put($folder.'/'.$name.config('generators.suffix.dialog'), $js);
 
         $this->info('Dialog created successfully.');
     }

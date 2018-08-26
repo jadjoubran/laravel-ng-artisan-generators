@@ -1,7 +1,7 @@
 ngDescribe({
-    name: 'Test {{ng-directive}} directive',
+    name: 'Test {{$ng_component}} component',
     modules: 'app',
-    element: '',
+    element: '<{{$ng_component}}></{{$ng_component}}>',
     tests: function (deps) {
 
         it('basic test', () => {

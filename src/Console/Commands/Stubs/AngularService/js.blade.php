@@ -1,4 +1,4 @@
-export class {{StudlyName}}Service{
+export class {{$studly_name}}Service{
     constructor(){
         'ngInject';
 

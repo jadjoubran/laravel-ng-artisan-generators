@@ -1,4 +1,4 @@
-export function {{StudlyName}}Filter(){
+export function {{$studly_name}}Filter(){
     'ngInject';
 
     return function( input ){
