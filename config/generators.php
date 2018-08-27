@@ -9,6 +9,7 @@ return [
             'config'           => 'config',
             'dialogs'          => 'dialogs',
             'filters'          => 'filters',
+            'run'              => 'run',
             'services'         => 'services',
       ],
       'suffix' => [
@@ -29,6 +30,7 @@ return [
                   'html'       => '.page.html',
                   'stylesheet' => '.scss', // less, scss or css
             ],
+            'run'        => '.run.js'
       ],
       'tests' => [
             'enable' => [
@@ -72,6 +74,12 @@ return [
                   'use_prefix' => true,
                   'prefix'     => 'app',
                   'suffix'     => 'filters',
+            ],
+            'run' => [
+                  'standalone' => true,
+                  'use_prefix' => true,
+                  'prefix'     => 'app',
+                  'suffix'     => 'run',
             ],
             'services' => [
                   'standalone' => true,

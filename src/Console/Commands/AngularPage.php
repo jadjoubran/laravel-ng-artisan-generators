@@ -30,6 +30,8 @@ class AngularPage extends Command
     public function __construct()
     {
         parent::__construct();
+
+        view()->replaceNamespace('Stubs', __DIR__.'/Stubs');
     }
 
     /**

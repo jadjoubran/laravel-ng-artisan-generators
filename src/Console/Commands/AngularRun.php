@@ -6,23 +6,22 @@ use File;
 use Illuminate\Console\Command;
 use LaravelAngular\Generators\Utils;
 
-class AngularService extends Command
+class AngularRun extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'ng:service {name}
-    {--no-spec : Don\'t create a test file}
-    {--no-import : Don\'t auto import in index.services}';
+    protected $signature = 'ng:run {name}
+    {--no-import : Don\'t auto import in index.run}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new service in angular/services';
+    protected $description = 'Create a new run in angular/run';
 
     /**
      * Create a new command instance.
@@ -46,12 +45,12 @@ class AngularService extends Command
         $name = $this->argument('name');
         $studly_name = studly_case($name);
 
-        $config = Utils::getConfig('services', true);
+        $config = Utils::getConfig('run', false);
 
         $files = [
             'templates' => [
                 [
-                    'template' => 'Stubs::AngularService.js',
+                    'template' => 'Stubs::AngularRun.js',
                     'vars'     => [
                         'studly_name' => $studly_name,
                     ],
@@ -59,26 +58,18 @@ class AngularService extends Command
                     'name'     => $name.$config['suffix'],
                 ],
             ],
-            'spec'      => [
-                'template' => 'Stubs::AngularService.test',
-                'vars'     => [
-                    'studly_name' => $studly_name,
-                ],
-                'path'     => $config['spec_path'],
-                'name'     => $name.'.component.spec.js',
-            ],
         ];
 
-        if(! Utils::createFiles($files, !$this->option('no-spec') && $config['enable_test'], false)) {
-            $this->info("Service already exists.");
+        if(! Utils::createFiles($files, false, false)) {
+            $this->info("Run already exists.");
             return false;
         }
 
         if(!$this->option('no-import') && $config['auto_import']) {
-            Utils::import('services', $name, rtrim($config['suffix'], ".js")); // import component
+            Utils::import('run', $name, rtrim($config['suffix'], ".js")); // import component
         }
 
 
-        $this->info('Service created successfully.');
+        $this->info('Run created successfully.');
     }
 }

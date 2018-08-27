@@ -46,13 +46,14 @@ class Import extends Command
     {
         $options = $this->options();
         $types = $this->argument('which');
-        $allowed_types = array('components', 'directives', 'config', 'filters', 'services');
+        $allowed_types = array('components', 'directives', 'config', 'filters', 'run', 'services');
 
         $import;
 
         if(count($types)) {
             if($options['all']) {
-                $this->error('Cannot pass type list with --all option. Use --ignore instead.');
+                $error = '  Cannot pass type list with --all option. Use --ignore instead.  ';
+                $this->error("\n".str_repeat(" ", strlen($error))."\n".$error."\n".str_repeat(" ", strlen($error))."\n");
                 return false;
             }
 
@@ -67,7 +68,8 @@ class Import extends Command
             $import = $allowed_types;
 
         } else {
-            $this->error("No arguments or options supplied.");
+            $error = "  No arguments or options supplied.  ";
+            $this->error("\n".str_repeat(" ", strlen($error))."\n".$error."\n".str_repeat(" ", strlen($error))."\n");
             return false;
         }
 
@@ -84,20 +86,22 @@ class Import extends Command
             $names; 
             $suffix;
             
-            if($type == 'components') {
-                $suffix = rtrim($config['suffix']['js'], ".js");
-                $names = File::directories($config['path']);
+            if(File::exists($config['path'])) {
+                if($type == 'components') {
+                    $suffix = rtrim($config['suffix']['js'], ".js");
+                    $names = File::directories($config['path']);
 
-            } else {
-                $suffix = rtrim($config['suffix'], ".js");
-                $names = File::files($config['path']);
-            }
+                } else {
+                    $suffix = rtrim($config['suffix'], ".js");
+                    $names = File::files($config['path']);
+                }
 
-            $refreshed = false;
-            
-            foreach($names as $name){
-                Utils::import($type, basename($name, $suffix.".js"), $suffix, !$refreshed);
-                $refreshed = true;
+                $refreshed = false;
+                
+                foreach($names as $name){
+                    Utils::import($type, basename($name, $suffix.".js"), $suffix, !$refreshed);
+                    $refreshed = true;
+                }
             }
         }
     }
