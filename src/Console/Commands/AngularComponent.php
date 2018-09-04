@@ -3,6 +3,7 @@
 namespace LaravelAngular\Generators\Console\Commands;
 
 use File;
+use LaravelAngular\Generators\Utils;
 use Illuminate\Console\Command;
 
 class AngularComponent extends Command
@@ -21,7 +22,7 @@ class AngularComponent extends Command
      *
      * @var string
      */
-    protected $description = 'Create a new component in angular/components';
+    protected $description = 'Create new components in angular/components';
 
     /**
      * Create a new command instance.
@@ -31,7 +32,9 @@ class AngularComponent extends Command
     public function __construct()
     {
         parent::__construct();
-    }
+        
+        view()->replaceNamespace('Stubs', __DIR__.'/Stubs');
+    }   
 
     /**
      * Execute the console command.
@@ -40,71 +43,59 @@ class AngularComponent extends Command
      */
     public function handle()
     {
-        $name = $this->argument('name');
+        $name = $this->argument('name'); 
         $studly_name = studly_case($name);
-        $ng_component = str_replace('_', '-', $name);
 
-        $html = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.html.stub');
-        $js = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.js.stub');
-        $style = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.style.stub');
-        $spec = file_get_contents(__DIR__.'/Stubs/AngularComponent/component.spec.js.stub');
+        // converts any strange name to correct markup
+        // i.e.: my_AngularComponent -> my-angular-component
+        $ng_component = strtolower(preg_replace("([A-Z])", "-$0", lcfirst($studly_name)));
 
-        $js = str_replace('{{StudlyName}}', $studly_name, $js);
-        $js = str_replace('{{name}}', $name, $js);
-
-        $spec = str_replace('{{ng-component}}', $ng_component, $spec);
-
-        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.components').'/'.$name;
-        if (is_dir($folder)) {
-            $this->info('Folder already exists');
-
+        $config = Utils::getConfig('components', true);
+        
+        $files = [
+            'templates' => [
+                [
+                    'template' => 'Stubs::AngularComponent.html',
+                    'vars'     => [],
+                    'path'     => $config['path'].'/'.$name,
+                    'name'     => $name.$config['suffix']['html'],
+                ],
+                [
+                    'template' => 'Stubs::AngularComponent.js',
+                    'vars'     => [
+                        'studly_name' => $studly_name, 
+                        'name'        => $name,
+                        'use_mix'     => $config['use_mix'],
+                    ],
+                    'path'     => $config['path'].'/'.$name,
+                    'name'     => $name.$config['suffix']['js'],
+                ],
+                [
+                    'template' => 'Stubs::AngularComponent.style',
+                    'vars'     => [
+                        'ng_component' => $ng_component,
+                    ],
+                    'path'     => $config['path'].'/'.$name,
+                    'name'     => $name.$config['suffix']['stylesheet'],
+                ],
+            ],
+            'spec' => [   
+                'template' => 'Stubs::AngularComponent.test', 
+                'vars'     => [
+                    'ng_component' => $ng_component,
+                ],
+                'path'     => $config['spec_path'],
+                'name'     => $name.'.component.spec.js',
+            ],
+        ];
+        
+        if(! Utils::createFiles($files, !$this->option('no-spec') && $config['enable_test'], true)) {
+            $this->info('Component already exists.');
             return false;
         }
 
-        $spec_folder = base_path(config('generators.tests.source.root')).'/'.config('generators.tests.source.components');
-
-        //create folder
-        File::makeDirectory($folder, 0775, true);
-
-        //create view (.component.html)
-        File::put($folder.'/'.$name.config('generators.suffix.componentView'), $html);
-
-        //create component (.component.js)
-        File::put($folder.'/'.$name.config('generators.suffix.component'), $js);
-
-        //create style file
-        File::put($folder.'/'.$name.'.'.config('generators.suffix.stylesheet', 'scss'), $style);
-
-        if (!$this->option('no-spec') && config('generators.tests.enable.components')) {
-            //create spec folder
-            if (!File::exists($spec_folder)) {
-                File::makeDirectory($spec_folder, 0775, true);
-            }
-            //create spec file (.component.spec.js)
-            File::put($spec_folder.'/'.$name.'.component.spec.js', $spec);
-        }
-
-        //import component
-        $components_index = base_path(config('generators.source.root')).'/index.components.js';
-        
-        if(!config('generators.angular_modules.components.standalone'))
-            $module = "angular.module('".config('generators.angular_modules.root')."')";
-        else
-            $module = "angular.module('"
-                      .(config('generators.angular_modules.components.use_prefix') ? config('generators.angular_modules.components.prefix')."." : "")
-                      .config('generators.angular_modules.components.suffix')
-                      ."', [])";
-
-        if(!file_exists($components_index))
-            File::put($components_index, $module);
-
-        if (config('generators.misc.auto_import') && !$this->option('no-import')) {
-            $components = file_get_contents($components_index);
-            $componentName = lcfirst($studly_name);
-            $newComponent = "\r\n\t.component('$componentName', {$studly_name}Component)";
-            $components = str_replace($module, $module.$newComponent, $components);
-            $components = 'import {'.$studly_name."Component} from './app/components/{$name}/{$name}.component';\n".$components;
-            file_put_contents($components_index, $components);
+        if(!$this->option('no-import') && $config['auto_import']) {
+            Utils::import('components', $name, rtrim($config['suffix']['js'], ".js")); // import component
         }
 
         $this->info('Component created successfully.');

@@ -4,6 +4,7 @@ namespace LaravelAngular\Generators\Console\Commands;
 
 use File;
 use Illuminate\Console\Command;
+use LaravelAngular\Generators\Utils;
 
 class AngularFilter extends Command
 {
@@ -31,6 +32,8 @@ class AngularFilter extends Command
     public function __construct()
     {
         parent::__construct();
+
+        view()->replaceNamespace('Stubs', __DIR__.'/Stubs');
     }
 
     /**
@@ -43,45 +46,28 @@ class AngularFilter extends Command
         $name = $this->argument('name');
         $studly_name = studly_case($name);
 
-        $js = file_get_contents(__DIR__.'/Stubs/AngularFilter/filter.js.stub');
+        $config = Utils::getConfig('filters', false);
 
-        $js = str_replace('{{StudlyName}}', $studly_name, $js);
+        $files = [
+            'templates' => [
+                [
+                    'template' => 'Stubs::AngularFilter.js',
+                    'vars'     => [
+                        'studly_name' => $studly_name,
+                    ],
+                    'path'     => $config['path'],
+                    'name'     => $name.$config['suffix'],
+                ],
+            ],
+        ];
 
-        $folder = base_path(config('generators.source.root')).'/'.config('generators.source.filters');
-
-        if(!File::exists($folder))
-            File::makeDirectory($folder);
-        
-        //create filter (.js)
-        if(!File::exists($folder.'/'.$name.config('generators.suffix.filter')))
-            File::put($folder.'/'.$name.config('generators.suffix.filter'), $js);
-        else{
-            $this->info('Filter already exists.');
+        if(! Utils::createFiles($files, false, false)) {
+            $this->info("Filter already exists.");
             return false;
         }
 
-        //import filter
-        $filters_index = base_path(config('generators.source.root')).'/index.filters.js';
-        
-        if(!config('generators.angular_modules.filters.standalone'))
-            $module = "angular.module('".config('generators.angular_modules.root')."')";
-        else
-            $module = "angular.module('"
-                      .(config('generators.angular_modules.filters.use_prefix') ? config('generators.angular_modules.filters.prefix')."." : "")
-                      .config('generators.angular_modules.filters.suffix')
-                      ."', [])";
-
-        if(!file_exists($filters_index)){
-            File::put($filters_index, $module);
-        }
-
-        if (config('generators.misc.auto_import') && !$this->option('no-import')) {
-            $filters = file_get_contents($filters_index);
-            $filterName = lcfirst($studly_name);
-            $newFilters = "\r\n\t.filter('$filterName', {$studly_name}Filter)";
-            $filters = str_replace($module, $module.$newFilters, $filters);
-            $filters = 'import {'.$studly_name."Filter} from './filters/{$name}.filter';\n".$filters;
-            file_put_contents($filters_index, $filters);
+        if(!$this->option('no-import') && $config['auto_import']) {
+            Utils::import('filters', $name, rtrim($config['suffix'], ".js")); // import component
         }
 
         $this->info('Filter created successfully.');

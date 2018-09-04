@@ -1,4 +1,4 @@
-export class {{StudlyName}}Controller{
+export class {{$studly_name}}Controller{
     constructor(DialogService){
         'ngInject';
 

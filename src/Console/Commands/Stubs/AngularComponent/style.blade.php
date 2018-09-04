@@ -1,0 +1,3 @@
+{{$ng_component}}{
+    
+}

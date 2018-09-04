@@ -3,34 +3,43 @@
 return [
       'source' => [
             'root'             => 'angular',
-            'page'             => 'app/pages',
+            'pages'             => 'app/pages',
             'components'       => 'app/components',
             'directives'       => 'directives',
             'config'           => 'config',
             'dialogs'          => 'dialogs',
             'filters'          => 'filters',
+            'run'              => 'run',
             'services'         => 'services',
       ],
       'suffix' => [
-            'component'        => '.component.js',
-            'componentView'    => '.component.html',
-            'dialog'           => '.dialog.js',
-            'dialogView'       => '.dialog.html',
-            'directive'        => '.directive.js',
-            'service'          => '.service.js',
-            'config'           => '.config.js',
-            'filter'           => '.filter.js',
-            'pageView'         => '.page.html',
-            'stylesheet'       => 'scss', // less, scss or css
+            'components' => [
+                  'html'       => '.component.html',
+                  'js'         => '.component.js',
+                  'stylesheet' => '.scss', // less, scss or css
+            ],
+            'directives' => '.directive.js',
+            'services'   => '.service.js',
+            'config'     => '.config.js',
+            'filters'    => '.filter.js',
+            'dialogs'    => [
+                  'html' => '.dialog.html',
+                  'js'   => '.dialog.js',
+            ],
+            'pages'      => [
+                  'html'       => '.page.html',
+                  'stylesheet' => '.scss', // less, scss or css
+            ],
+            'run'        => '.run.js'
       ],
       'tests' => [
             'enable' => [
-                'components'   => true,
-                'services'     => true,
-                'directives'   => true,
+                'components'   => false,
+                'services'     => false,
+                'directives'   => false,
             ],
             'source' => [
-                'root'         => 'tests/angular/',
+                'root'         => 'tests/angular',
                 'components'   => 'app/components',
                 'directives'   => 'directives',
                 'services'     => 'services',
@@ -38,38 +47,45 @@ return [
       ],
       'misc' => [
             'auto_import'      => true,
+            'use_mix'          => true,
       ],
       'angular_modules' => [
-            'root' => 'app',
+            'root'       => 'app',
             'components' => [
                   'standalone' => true,
                   'use_prefix' => true,
                   'prefix'     => 'app',
-                  'suffix'     => 'components'
+                  'suffix'     => 'components',
             ],
             'directives' => [
                   'standalone' => true,
                   'use_prefix' => true,
                   'prefix'     => 'app',
-                  'suffix'     => 'directives'
+                  'suffix'     => 'directives',
             ],
             'config' => [
                   'standalone' => true,
                   'use_prefix' => true,
                   'prefix'     => 'app',
-                  'suffix'     => 'config'
+                  'suffix'     => 'config',
             ],
             'filters' => [
                   'standalone' => true,
                   'use_prefix' => true,
                   'prefix'     => 'app',
-                  'suffix'     => 'filters'
+                  'suffix'     => 'filters',
+            ],
+            'run' => [
+                  'standalone' => true,
+                  'use_prefix' => true,
+                  'prefix'     => 'app',
+                  'suffix'     => 'run',
             ],
             'services' => [
                   'standalone' => true,
                   'use_prefix' => true,
                   'prefix'     => 'app',
-                  'suffix'     => 'services'
+                  'suffix'     => 'services',
             ],
       ]
 ];

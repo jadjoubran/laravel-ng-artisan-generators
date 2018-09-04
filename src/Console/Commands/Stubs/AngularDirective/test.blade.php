@@ -1,7 +1,7 @@
 ngDescribe({
-    name: 'Test {{StudlyName}}Service',
+    name: 'Test {{$ng_directive}} directive',
     modules: 'app',
-    inject: '{{StudlyName}}Service',
+    element: '',
     tests: function (deps) {
 
         it('basic test', () => {

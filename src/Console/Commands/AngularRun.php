@@ -6,21 +6,22 @@ use File;
 use Illuminate\Console\Command;
 use LaravelAngular\Generators\Utils;
 
-class AngularDialog extends Command
+class AngularRun extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'ng:dialog {name}';
+    protected $signature = 'ng:run {name}
+    {--no-import : Don\'t auto import in index.run}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new dialog in angular/dialog';
+    protected $description = 'Create a new run in angular/run';
 
     /**
      * Create a new command instance.
@@ -43,36 +44,32 @@ class AngularDialog extends Command
     {
         $name = $this->argument('name');
         $studly_name = studly_case($name);
-        $human_readable = ucfirst(str_replace('_', ' ', $name));
 
-        $config = Utils::getConfig('dialogs', false);
+        $config = Utils::getConfig('run', false);
 
         $files = [
             'templates' => [
                 [
-                    'template' => 'Stubs::AngularDialog.html',
-                    'vars'     => [
-                        'human_redable' => $human_readable,
-                    ],
-                    'path'     => $config['path'].'/'.$name,
-                    'name'     => $name.$config['suffix']['html'],
-                ],
-                [
-                    'template' => 'Stubs::AngularDialog.js',
+                    'template' => 'Stubs::AngularRun.js',
                     'vars'     => [
                         'studly_name' => $studly_name,
                     ],
-                    'path'     => $config['path'].'/'.$name,
-                    'name'     => $name.$config['suffix']['js'],
+                    'path'     => $config['path'],
+                    'name'     => $name.$config['suffix'],
                 ],
             ],
         ];
 
-        if(! Utils::createFiles($files, false, true)) {
-            $this->info('Dialog already exists.');
+        if(! Utils::createFiles($files, false, false)) {
+            $this->info("Run already exists.");
             return false;
         }
 
-        $this->info('Dialog created successfully.');
+        if(!$this->option('no-import') && $config['auto_import']) {
+            Utils::import('run', $name, rtrim($config['suffix'], ".js")); // import component
+        }
+
+
+        $this->info('Run created successfully.');
     }
 }

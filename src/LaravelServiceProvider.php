@@ -32,8 +32,10 @@ class LaravelServiceProvider extends ServiceProvider
             'LaravelAngular\Generators\Console\Commands\AngularDirective',
             'LaravelAngular\Generators\Console\Commands\AngularPage',
             'LaravelAngular\Generators\Console\Commands\AngularFilter',
+            'LaravelAngular\Generators\Console\Commands\AngularRun',
             'LaravelAngular\Generators\Console\Commands\AngularService',
             'LaravelAngular\Generators\Console\Commands\PwaManifest',
+            'LaravelAngular\Generators\Console\Commands\Import',
         ]);
 
         $this->mergeConfigFrom(__DIR__.'/../config/generators.php', 'generators');

@@ -1,4 +1,4 @@
-class {{StudlyName}}Controller{
+class {{$studly_name}}Controller{
     constructor(){
         'ngInject';
 
@@ -6,9 +6,9 @@ class {{StudlyName}}Controller{
     }
 }
 
-export function {{StudlyName}}Directive(){
+export function {{$studly_name}}Directive(){
     return {
-        controller: {{StudlyName}}Controller,
+        controller: {{$studly_name}}Controller,
         link: function(scope, element, attrs, controllers){
             //
         }

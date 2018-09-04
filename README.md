@@ -18,13 +18,15 @@ If you're using the starter project, then it's already pre-installed.
 # Usage
 
 ```shell
-php artisan ng:page name       #New page inside angular/app/pages/
-php artisan ng:component name  #New component inside angular/app/components/
-php artisan ng:directive name  #New directive inside angular/directives/
-php artisan ng:config name     #New config inside angular/config/
-php artisan ng:dialog name     #New custom dialog inside angular/dialogs/
-php artisan ng:filter name     #New filter inside angular/filters/
-php artisan ng:service name    #New service inside angular/services/
+php artisan ng:component name [--no-import] [--no-spec]        #New component inside angular/app/components/
+php artisan ng:config name [--no-import]                       #New config inside angular/config/
+php artisan ng:dialog name                                     #New custom dialog inside angular/dialogs/
+php artisan ng:directive name [--no-import] [--no-spec]        #New directive inside angular/directives/
+php artisan ng:filter name [--no-import]                       #New filter inside angular/filters/
+php artisan ng:page name                                       #New page inside angular/app/pages/
+php artisan ng:run name [--no-import]                          #New run function inside angular/run
+php artisan ng:service name [--no-import] [--no-spec]          #New service inside angular/services/
+php artisan ng:import [<type>...] [--all | -a] [--ignore | -i] #Reimport all in index files
 ```
 
 These commands will create new directories and files for AngularJS front-end in new ES6 syntax. 
@@ -43,12 +45,29 @@ Configurations are editable in `config\generators.php`. See below for details.
 * **tests**
    * **enable**: whether to enable or disable creation of test files
    * **source**: same as `source`, but for test files
-* **misc.auto_import**: enable or disable automatic import in index files.
+* **misc**
+   * **auto_import**: enable or disable automatic import in index files.
+   * **use_mix**: set this to true if you're using [Laravel Mix](https://laravel.com/docs/5.6/mix)
 * **angular_modules**: configuration for angular root module and submodules. If index files are created before or manually, these settings will help recognize angular modules for automatic import. If index file is created on first command run, these settings will create angular module for you.
    * **root**: angular root module.
    * **standalone**: if a module is defined as standalone (i.e.: `angular.module('mymodule', [])`) or is part of a root module (`angular.module('mymodule')`). If set to false, `use_prefix`, `prefix` and `suffix` will be ignored and root module name will be used.
    * **prefix** and **suffix**: name of module of the type `prefix.suffix`; i.e.: `app.components`.
    * **use_prefix**: whether to use prefix for module name
+
+
+# Options
+
+## Common options
+**no-import**: Disable import for created file.
+<br>
+**no-spec**: Disable creation of test file.
+
+## Import options
+**type**: Specify which type of file should be imported. I.e.: `php artisan ng:import components directives filters` will import all components, directives and filters in their respective index file.
+<br>
+**all**: Import all importable classes: components, configs, directives, filters, runs and services.
+<br>
+**ignore**: Set which files should not be imported; i.e: `php php artisan ng:import -i components -i directives` will import all importable classes except for components and directives.
 
 # Documentation
 
