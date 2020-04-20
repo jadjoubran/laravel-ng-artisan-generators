@@ -36,6 +36,9 @@ return [
                 'services'     => 'services',
             ],
       ],
+      'stylesheets' => [
+            'enable' => true,
+      ],
       'misc' => [
             'auto_import'      => true,
       ],
